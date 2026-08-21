@@ -144,9 +144,12 @@ function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <TgLink className={`${btnLight} hidden h-11 sm:inline-flex`} label="Обсудить оформление в Telegram">
-            Обсудить оформление
-          </TgLink>
+          <span className="hidden sm:block">
+            <TgLink className={`${btnLight} h-11`} label="Обсудить оформление в Telegram">
+              Обсудить оформление
+            </TgLink>
+          </span>
+
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
