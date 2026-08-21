@@ -80,11 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "viewport",
         content: "width=device-width, initial-scale=1, viewport-fit=cover",
       },
-      { title: "HolyPlastic — сопровождение оформления дебетовой Visa" },
+      { title: "HolyPlastic — Visa без границ" },
       {
         name: "description",
         content:
-          "Помогаю оформить собственную дебетовую Visa в банке Великобритании: Virtual 12 000 ₽, Virtual + Physical 15 000 ₽. Сопровождение до активации.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы и доступные переводы. Virtual 12 000 ₽, Physical 15 000 ₽.",
       },
       { property: "og:site_name", content: "HolyPlastic" },
       { property: "og:type", content: "website" },
