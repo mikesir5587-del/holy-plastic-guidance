@@ -1,0 +1,7 @@
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  # Build the TanStack Start server output with Nitro's official Netlify preset.
+  NITRO_PRESET = "netlify"
