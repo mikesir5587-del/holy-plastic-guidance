@@ -1,14 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  SiAdobe,
   SiAirbnb,
-  SiAmazon,
   SiAnthropic,
+  SiBookingdotcom,
   SiApple,
   SiGoogleplay,
   SiNetflix,
-  SiOpenai,
   SiSpotify,
   SiSteam,
   SiYoutube,
@@ -57,7 +55,7 @@ const NAV = [
 ];
 
 const ROW_A: MarqueeItem[] = [
-  { name: "ChatGPT", icon: <SiOpenai /> },
+  { name: "ChatGPT", icon: <span className="text-[0.85em] font-black tracking-tight">AI</span> },
   { name: "Claude", icon: <SiAnthropic /> },
   { name: "Netflix", icon: <SiNetflix /> },
   { name: "Spotify", icon: <SiSpotify /> },
@@ -67,10 +65,10 @@ const ROW_A: MarqueeItem[] = [
 
 const ROW_B: MarqueeItem[] = [
   { name: "Google Play", icon: <SiGoogleplay /> },
-  { name: "Amazon", icon: <SiAmazon /> },
-  { name: "Adobe", icon: <SiAdobe /> },
+  { name: "Amazon", icon: <span className="text-[0.85em] font-black tracking-tight">a</span> },
+  { name: "Adobe", icon: <span className="text-[0.85em] font-black tracking-tight">A</span> },
   { name: "Steam", icon: <SiSteam /> },
-  { name: "Booking.com", icon: <span className="text-[0.9em] font-black">B.</span> },
+  { name: "Booking.com", icon: <SiBookingdotcom /> },
   { name: "Airbnb", icon: <SiAirbnb /> },
 ];
 
