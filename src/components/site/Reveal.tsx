@@ -4,12 +4,14 @@ export function Reveal({
   children,
   className = "",
   delay = 0,
+  variant = "blur",
   as: Tag = "div",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "section" | "li" | "article";
+  variant?: "blur" | "plain";
+  as?: "div" | "section" | "li" | "article" | "header";
 }) {
   const ref = useRef<HTMLElement>(null);
 
@@ -29,7 +31,7 @@ export function Reveal({
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -39,7 +41,7 @@ export function Reveal({
   return (
     <Component
       ref={ref as React.RefObject<HTMLDivElement>}
-      className={`reveal ${className}`}
+      className={`${variant === "blur" ? "reveal-blur" : "reveal"} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
