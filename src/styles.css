@@ -120,6 +120,31 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   line-height: 0.95;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+  overflow-wrap: normal;
+  white-space: normal;
+  hyphens: none;
+}
+
+@media (max-width: 640px) {
+  .display {
+    letter-spacing: 0.005em;
+  }
+}
+
+/* fluid, overflow-safe heading scales */
+@utility h-section {
+  font-size: clamp(2rem, 8.4vw, 6.5rem);
+}
+
+@utility h-hero {
+  font-size: clamp(2.9rem, 13.5vw, 9rem);
+}
+
+@utility h-sub {
+  font-size: clamp(1.5rem, 6.2vw, 3.2rem);
 }
 
 @utility kicker {
@@ -233,11 +258,11 @@
 }
 
 @utility marquee-hold {
-  &:hover .marquee-track,
-  &:hover .marquee-track-rev,
-  &:focus-within .marquee-track,
-  &:focus-within .marquee-track-rev {
-    animation-play-state: paused;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .marquee-track,
+    &:hover .marquee-track-rev {
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -326,4 +351,46 @@
     width: 100%;
     justify-content: center;
   }
+}
+
+/* --- depth decor: grids, chrome arcs, glass --- */
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, currentColor 8%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, currentColor 8%, transparent) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(120% 90% at 50% 30%, black, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, black, transparent 78%);
+}
+
+@utility chrome-arc {
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+  box-shadow:
+    inset 0 0 60px color-mix(in oklab, var(--cyan) 10%, transparent),
+    0 0 60px color-mix(in oklab, var(--magenta) 8%, transparent);
+  opacity: 0.5;
+}
+
+@utility glass-panel {
+  background: color-mix(in oklab, white 6%, transparent);
+  backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid color-mix(in oklab, white 14%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 22%, transparent),
+    0 30px 60px -40px oklch(0 0 0 / 0.9);
+}
+
+@keyframes hp-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0) rotate(8deg);
+  }
+}
+
+@utility drift {
+  animation: hp-drift 22s ease-in-out infinite;
 }
