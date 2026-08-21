@@ -1,128 +1,105 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  SiApple,
-  SiSpotify,
-  SiNetflix,
-  SiSteam,
-  SiBookingdotcom,
+  SiAdobe,
   SiAirbnb,
-  SiClaude,
+  SiAmazon,
+  SiAnthropic,
+  SiApple,
+  SiGoogleplay,
+  SiNetflix,
+  SiOpenai,
+  SiSpotify,
+  SiSteam,
+  SiYoutube,
 } from "react-icons/si";
-import {
-  ArrowUpRight,
-  Check,
-  CreditCard,
-  Globe2,
-  Landmark,
-  Menu,
-  Send,
-  ShieldCheck,
-  Smartphone,
-  Sparkles,
-  Wallet,
-  X,
-} from "lucide-react";
+import { Copy, Check, ArrowUpRight, Send, Mail } from "lucide-react";
 
 import { CardArt } from "@/components/site/CardArt";
 import { Logo } from "@/components/site/Logo";
-import { Orbs } from "@/components/site/Orbs";
+import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
 
-const TG = "https://t.me/holy_plastic";
-const MAIL = "mailto:holyplastic@yandex.com?subject=%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20HolyPlastic";
+const TELEGRAM = "https://t.me/holy_plastic";
+const EMAIL = "holyplastic@yandex.com";
+const MAILTO = `mailto:${EMAIL}?subject=%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20HolyPlastic`;
 
 export const Route = createFileRoute("/")({
-  component: HomePage,
+  component: Home,
   head: () => ({
     meta: [
-      { title: "HolyPlastic — сопровождение оформления дебетовой Visa" },
+      { title: "HolyPlastic — Visa без границ" },
       {
         name: "description",
         content:
-          "Личное сопровождение оформления виртуальной или физической дебетовой Visa в банке Великобритании: международные платежи, Apple Pay, прозрачная цена 12 000 ₽ и 15 000 ₽.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 12 000 ₽, Physical 15 000 ₽.",
       },
-      {
-        property: "og:title",
-        content: "HolyPlastic — сопровождение оформления дебетовой Visa",
-      },
+      { property: "og:title", content: "HolyPlastic — Visa без границ" },
       {
         property: "og:description",
         content:
-          "Помогаю пройти оформление виртуальной или физической Visa в банке Великобритании — с сопровождением на каждом этапе.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы.",
       },
-      { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "HolyPlastic",
-          description:
-            "Информационно-консультационное сопровождение оформления дебетовой Visa в банке Великобритании.",
-          areaServed: "RU",
-          url: "/",
-        }),
-      },
-    ],
   }),
 });
 
 const NAV = [
   { href: "#services", label: "Сервисы" },
   { href: "#features", label: "Возможности" },
-  { href: "#safety", label: "Безопасность" },
-  { href: "#steps", label: "Этапы" },
+  { href: "#security", label: "Прозрачно" },
+  { href: "#steps", label: "4 шага" },
   { href: "#pricing", label: "Тарифы" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Контакт" },
+];
+
+const ROW_A: MarqueeItem[] = [
+  { name: "ChatGPT", icon: <SiOpenai /> },
+  { name: "Claude", icon: <SiAnthropic /> },
+  { name: "Netflix", icon: <SiNetflix /> },
+  { name: "Spotify", icon: <SiSpotify /> },
+  { name: "Apple", icon: <SiApple /> },
+  { name: "YouTube", icon: <SiYoutube /> },
+];
+
+const ROW_B: MarqueeItem[] = [
+  { name: "Google Play", icon: <SiGoogleplay /> },
+  { name: "Amazon", icon: <SiAmazon /> },
+  { name: "Adobe", icon: <SiAdobe /> },
+  { name: "Steam", icon: <SiSteam /> },
+  { name: "Booking.com", icon: <span className="text-[0.9em] font-black">B.</span> },
+  { name: "Airbnb", icon: <SiAirbnb /> },
 ];
 
 function TgLink({
   children,
   className = "",
-  variant = "primary",
+  label,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
-  variant?: "primary" | "ghost";
+  label?: string;
 }) {
-  const base =
-    "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5";
-  const styles =
-    variant === "primary"
-      ? "bg-foreground text-primary-foreground shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-lift)]"
-      : "glass text-foreground hover:bg-white/80";
   return (
     <a
-      href={TG}
+      href={TELEGRAM}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${base} ${styles} ${className}`}
+      className={className}
+      aria-label={label}
     >
       {children}
     </a>
   );
 }
 
-function Section({
-  id,
-  children,
-  className = "",
-}: {
-  id?: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <section id={id} className={`relative px-5 py-20 sm:px-8 sm:py-24 lg:py-28 ${className}`}>
-      <div className="mx-auto w-full max-w-6xl">{children}</div>
-    </section>
-  );
-}
+const btnLight =
+  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-white px-7 text-[0.78rem] font-bold tracking-[0.16em] text-[color:var(--ink)] uppercase transition-transform duration-300 hover:scale-[1.03]";
+const btnGhost =
+  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-current/30 px-7 text-[0.78rem] font-bold tracking-[0.16em] uppercase transition-colors duration-300 hover:bg-current/10";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -135,83 +112,83 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "border-b border-white/10 bg-[color:var(--ink)]/80 backdrop-blur-xl"
+          : "border-b border-transparent"
+      }`}
+    >
       <div
-        className={`glass mx-auto flex w-full max-w-6xl items-center justify-between rounded-2xl transition-all duration-500 ${
-          scrolled ? "px-3 py-1.5 sm:px-4" : "px-4 py-3 sm:px-5"
+        className={`mx-auto flex w-full max-w-[1400px] items-center justify-between px-5 transition-all duration-500 sm:px-8 ${
+          scrolled ? "h-16" : "h-20 sm:h-24"
         }`}
       >
-        <a href="#top" className="flex items-center" aria-label="HolyPlastic — на главную">
-          <Logo className={`transition-all duration-500 ${scrolled ? "h-11" : "h-14 sm:h-16"}`} imgClassName="scale-[1.35]" />
+        <a href="#top" aria-label="HolyPlastic — в начало" className="flex items-center">
+          <Logo
+            tone="light"
+            priority
+            className={`transition-all duration-500 ${scrolled ? "h-7" : "h-9 sm:h-11"}`}
+          />
         </a>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
+        <nav aria-label="Основная навигация" className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="story-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-[0.68rem] font-semibold tracking-[0.24em] text-white/60 uppercase transition-colors hover:text-white"
             >
               {n.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <TgLink className="hidden sm:inline-flex">
-            <Send className="size-4" aria-hidden="true" />
+        <div className="flex items-center gap-3">
+          <TgLink className={`${btnLight} hidden h-11 sm:inline-flex`} label="Обсудить оформление в Telegram">
             Обсудить оформление
           </TgLink>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Закрыть меню" : "Открыть меню"}
-            className="glass flex size-11 items-center justify-center rounded-xl text-foreground lg:hidden"
+            aria-controls="mobile-nav"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-white/20 lg:hidden"
           >
-            {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            <span className="sr-only">Меню</span>
+            <span aria-hidden="true" className="flex flex-col gap-[5px]">
+              <span
+                className={`block h-px w-5 bg-white transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`}
+              />
+              <span className={`block h-px w-5 bg-white transition-opacity ${open ? "opacity-0" : ""}`} />
+              <span
+                className={`block h-px w-5 bg-white transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+              />
+            </span>
           </button>
         </div>
       </div>
 
       {open && (
         <div
-          id="mobile-menu"
-          className="glass animate-fade-in mx-auto mt-2 w-full max-w-6xl rounded-2xl p-3 lg:hidden"
+          id="mobile-nav"
+          className="border-t border-white/10 bg-[color:var(--ink)]/95 px-5 py-6 backdrop-blur-xl lg:hidden"
         >
-          <div className="mb-2 flex justify-end">
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Закрыть меню"
-              className="flex size-11 items-center justify-center rounded-xl text-muted-foreground hover:text-foreground"
-            >
-              <X className="size-5" aria-hidden="true" />
-            </button>
-          </div>
-          <nav className="grid gap-1" aria-label="Мобильная навигация">
+          <nav aria-label="Мобильная навигация" className="flex flex-col">
             {NAV.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="flex min-h-[44px] items-center rounded-xl px-3 text-base font-medium text-foreground hover:bg-white/70"
+                className="flex min-h-[48px] items-center border-b border-white/10 text-[0.8rem] font-semibold tracking-[0.2em] text-white/80 uppercase"
               >
                 {n.label}
               </a>
             ))}
           </nav>
-          <TgLink className="mt-3 w-full">
-            <Send className="size-4" aria-hidden="true" />
-            Написать @holy_plastic
+          <TgLink className={`${btnLight} mt-6 w-full`} label="Обсудить оформление в Telegram">
+            Обсудить оформление
           </TgLink>
         </div>
       )}
@@ -220,572 +197,496 @@ function Header() {
 }
 
 function Hero() {
-  const chips = ["Подача обычно за 1 день", "Виртуальная или физическая", "Личное сопровождение"];
+  const [y, setY] = useState(0);
+  const [motion, setMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: no-preference)");
+    setMotion(mq.matches);
+    const onChange = () => setMotion(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!motion) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setY(Math.min(window.scrollY, 900)));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [motion]);
+
+  const p = (k: number) => ({ transform: `translate3d(0, ${y * k}px, 0)` });
+
   return (
-    <Section id="top" className="pt-32 sm:pt-36 lg:pt-40">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-        <Reveal>
-          <p className="eyebrow">Личное сопровождение • Visa Debit • UK</p>
-          <h1 className="mt-4 text-[2rem] leading-[1.06] font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            Международная дебетовая{" "}
-            <span className="spectral-text">Visa</span> — с сопровождением на каждом этапе
-          </h1>
-          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Помогаю пройти оформление виртуальной или физической карты в банке Великобритании — для
-            международных платежей, Apple Pay и доступных переводов из Европы и США.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <TgLink>
-              <Send className="size-4" aria-hidden="true" />
-              Обсудить оформление
-            </TgLink>
-            <a
-              href={MAIL}
-              className="glass inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80"
-            >
-              Написать на почту
-            </a>
-          </div>
-
-          <ul className="mt-7 flex flex-wrap gap-2">
-            {chips.map((c) => (
-              <li
-                key={c}
-                className="glass rounded-full px-4 py-2 text-xs font-medium text-foreground/80 sm:text-sm"
-              >
-                {c}
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-5 text-xs text-muted-foreground sm:text-sm">
-            Решение о выпуске принимает банк после проверки документов.
-          </p>
-        </Reveal>
-
-        <Reveal delay={120} className="relative">
-          <div className="relative mx-auto max-w-[520px]">
-            <CardArt />
-            <div className="glass mx-auto mt-5 flex w-fit items-center gap-2 rounded-2xl px-4 py-3 sm:absolute sm:-bottom-8 sm:right-[-4%] sm:mt-0">
-              <SiApple className="size-5" aria-hidden="true" />
-              <span className="text-sm font-semibold">Apple&nbsp;Pay</span>
-              <span className="text-[0.65rem] whitespace-nowrap text-muted-foreground">если доступно</span>
-            </div>
-          </div>
-        </Reveal>
+    <section id="top" className="grain relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-24 sm:pt-32">
+      {/* chrome light field */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute left-1/2 top-[34%] h-[70vw] w-[70vw] -translate-x-1/2 rounded-full opacity-45 blur-[110px]"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 60%), radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--magenta) 55%, transparent), transparent 62%)",
+            ...(motion ? p(0.06) : {}),
+          }}
+        />
       </div>
-    </Section>
+
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+        <div className="flex items-baseline justify-between">
+          <h1 className="display text-[15vw] leading-[0.86] sm:text-[11vw] lg:text-[8.5vw]">
+            <span className="block" style={motion ? p(-0.05) : undefined}>
+              Visa
+            </span>
+            <span
+              className="block pl-[8vw] text-white/45 sm:pl-[14vw]"
+              style={motion ? p(0.04) : undefined}
+            >
+              без
+            </span>
+            <span className="chrome-text block pl-[2vw]" style={motion ? p(-0.02) : undefined}>
+              границ
+            </span>
+          </h1>
+          <p className="kicker hidden max-w-[9rem] text-right text-white lg:block">
+            UK debit
+            <br />
+            Visa
+          </p>
+        </div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 sm:px-8">
+        <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,620px)_1fr]">
+          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
+            Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
+            Apple&nbsp;Pay и доступных переводов.
+          </p>
+
+          <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
+            <CardArt className="mx-auto w-full max-w-[620px]" />
+          </div>
+
+          <div className="order-3 flex flex-col items-start gap-5 lg:items-end">
+            <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/55 uppercase">
+              <SiApple aria-hidden="true" /> Apple Pay · если доступно
+            </span>
+            <TgLink className={btnLight} label="Обсудить оформление в Telegram">
+              Обсудить оформление <ArrowUpRight className="size-4" aria-hidden="true" />
+            </TgLink>
+          </div>
+        </div>
+
+        <div className="mt-10 flex items-center gap-3 text-white/40">
+          <span aria-hidden="true" className="relative block h-6 w-px bg-white/25">
+            <span className="scroll-dot absolute -left-[1.5px] top-0 block size-[4px] rounded-full bg-white" />
+          </span>
+          <span className="kicker text-white">Скролл</span>
+        </div>
+      </div>
+    </section>
   );
 }
 
-const SERVICES: { label: string; Icon?: React.ComponentType<{ className?: string }> }[] = [
-  { label: "Apple", Icon: SiApple },
-  { label: "Spotify", Icon: SiSpotify },
-  { label: "Netflix", Icon: SiNetflix },
-  { label: "Adobe" },
-  { label: "Steam", Icon: SiSteam },
-  { label: "Booking.com", Icon: SiBookingdotcom },
-  { label: "Airbnb", Icon: SiAirbnb },
-  { label: "Amazon" },
-  { label: "ChatGPT" },
-  { label: "Claude", Icon: SiClaude },
-];
-
 function Services() {
   return (
-    <Section id="services">
-      <Reveal>
-        <p className="eyebrow">Международные сервисы</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Когда российская карта упирается в границу
-        </h2>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          Одна международная карта — привычный способ оплачивать поддерживаемые зарубежные сервисы и
-          покупки.
+    <section id="services" className="border-y border-white/10 py-14 sm:py-20">
+      <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
+        <h2 className="display text-[10vw] leading-none sm:text-[5.5vw]">Платите глобально</h2>
+      </div>
+      <Marquee rowA={ROW_A} rowB={ROW_B} />
+      <div className="mx-auto mt-8 w-full max-w-[1400px] px-5 sm:px-8">
+        <p className="max-w-2xl text-xs leading-relaxed text-white/40">
+          Бренды приведены как примеры и не являются партнёрами HolyPlastic. Оплата и доступность
+          зависят от правил сервиса, региона и карты.
         </p>
-      </Reveal>
-
-      <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        {SERVICES.map((s, i) => (
-          <Reveal as="li" key={s.label} delay={i * 45}>
-            <div className="glass hover-scale flex h-full min-h-[104px] flex-col items-center justify-center gap-2 rounded-2xl px-3 py-5 text-center">
-              {s.Icon ? (
-                <s.Icon className="size-7 text-foreground/70" aria-hidden="true" />
-              ) : (
-                <span
-                  aria-hidden="true"
-                  className="flex size-7 items-center justify-center rounded-lg border border-hairline text-sm font-bold text-foreground/60"
-                >
-                  {s.label[0]}
-                </span>
-              )}
-              <span className="text-xs font-semibold text-foreground/80 sm:text-sm">{s.label}</span>
-            </div>
-          </Reveal>
-        ))}
-      </ul>
-
-      <Reveal delay={120}>
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          Бренды приведены как примеры и не являются партнёрами HolyPlastic. Карта решает вопрос
-          способа оплаты, но доступность сервиса зависит от его правил, страны аккаунта и
-          местоположения пользователя.
-        </p>
-      </Reveal>
-    </Section>
+      </div>
+    </section>
   );
 }
 
 const FEATURES = [
   {
-    Icon: Wallet,
-    title: "Apple Pay",
-    text: "Добавление в Wallet, если доступно для выпущенной карты и региона аккаунта.",
-    span: "lg:col-span-3",
+    n: "01",
+    word: "Apple Pay",
+    text: "Добавьте карту в кошелёк телефона и платите офлайн и онлайн, где принимают Visa.",
+    sub: "Международные сервисы и покупки — подписки, магазины, поездки.",
   },
   {
-    Icon: Globe2,
-    title: "Международные платежи",
-    text: "Поддерживаемые сервисы, программы, бронирования и покупки.",
-    span: "lg:col-span-3",
+    n: "02",
+    word: "Переводы",
+    text: "Доступные переводы из Европы и США по реквизитам счёта.",
+    sub: "Есть вариант пополнения через криптовалютный маршрут — условия, комиссии и доступность определяют провайдеры и правила банка.",
   },
   {
-    Icon: Landmark,
-    title: "Доступные переводы из Европы и США",
-    text: "Реквизиты и ограничения уточняются до оформления.",
-    span: "lg:col-span-2",
-  },
-  {
-    Icon: CreditCard,
-    title: "Виртуальная и физическая Visa",
-    text: "Выбираете формат под свой сценарий: только онлайн или пластик в руках.",
-    span: "lg:col-span-2",
-  },
-  {
-    Icon: Sparkles,
-    title: "Вариант пополнения через криптовалютный маршрут",
-    text: "Способ, комиссии и ограничения объясняются заранее; доступность зависит от провайдеров и применимых правил.",
-    span: "lg:col-span-2",
-  },
-  {
-    Icon: Smartphone,
-    title: "Личное сопровождение",
-    text: "От документов до получения и базовой активации — на связи по каждому шагу.",
-    span: "lg:col-span-6",
+    n: "03",
+    word: "Virtual / Physical",
+    text: "Виртуальная Visa сразу или пластик с доставкой — выбираете формат.",
+    sub: "Личное сопровождение от первого сообщения до активации.",
   },
 ];
 
 function Features() {
   return (
-    <Section id="features">
-      <Reveal>
-        <p className="eyebrow">Возможности</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Что даёт карта и что делаю я
-        </h2>
-      </Reveal>
+    <section id="features" className="relative py-24 sm:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+        <Reveal>
+          <h2 className="display text-[12vw] leading-none sm:text-[6vw]">Возможности</h2>
+        </Reveal>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-6">
-        {FEATURES.map((f, i) => (
-          <Reveal key={f.title} delay={i * 60} className={f.span}>
-            <article className="glass grain group h-full overflow-hidden rounded-3xl p-6 transition-transform duration-500 hover:-translate-y-1 sm:p-7">
-              <span className="flex size-11 items-center justify-center rounded-2xl bg-white/70 text-foreground shadow-[var(--shadow-soft)]">
-                <f.Icon className="size-5" aria-hidden="true" />
+        <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-40">
+          {FEATURES.map((f, i) => (
+            <Reveal
+              key={f.n}
+              variant="blur"
+              className={`grid gap-6 sm:grid-cols-12 sm:items-end ${i % 2 ? "sm:text-right" : ""}`}
+            >
+              <span
+                className={`kicker text-white sm:col-span-2 ${i % 2 ? "sm:order-3 sm:text-right" : ""}`}
+              >
+                {f.n}
               </span>
-              <h3 className="mt-5 text-lg font-bold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.text}</p>
-            </article>
-          </Reveal>
-        ))}
+              <div className={`sm:col-span-6 ${i % 2 ? "sm:order-2 sm:col-start-4" : ""}`}>
+                <p className="display text-[11vw] leading-[0.95] sm:text-[4.6vw]">{f.word}</p>
+              </div>
+              <div className={`sm:col-span-4 ${i % 2 ? "sm:order-1" : ""}`}>
+                <p className="text-sm leading-relaxed text-white/70">{f.text}</p>
+                <p className="mt-3 text-xs leading-relaxed text-white/40">{f.sub}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function Safety() {
-  const need = ["Заграничный или внутренний паспорт РФ/РБ", "Email", "Номер телефона"];
-  const never = [
-    "PIN-код",
-    "CVV",
-    "Пароль от банка",
-    "Коды подтверждения после выдачи",
-  ];
-  const badges = [
-    "Цена известна заранее",
-    "Статус по каждому этапу",
-    "Без гарантии одобрения — решение принимает банк",
-  ];
+function Security() {
   return (
-    <Section id="safety">
-      <Reveal>
-        <p className="eyebrow">Безопасность</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Без тумана вокруг денег и документов
-        </h2>
-      </Reveal>
-
-      <div className="mt-10 grid gap-4 md:grid-cols-2">
+    <section id="security" className="scene-milk grain py-24 sm:py-36">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
-          <div className="glass h-full rounded-3xl p-6 sm:p-8">
-            <h3 className="text-lg font-bold">Что потребуется</h3>
-            <ul className="mt-4 space-y-3">
-              {need.map((n) => (
-                <li key={n} className="flex items-start gap-3 text-sm text-foreground/80">
-                  <Check className="mt-0.5 size-4 shrink-0 text-[var(--blue)]" aria-hidden="true" />
-                  {n}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h2 className="display text-[13vw] leading-none sm:text-[7vw]">Прозрачно</h2>
         </Reveal>
-        <Reveal delay={100}>
-          <div className="glass h-full rounded-3xl p-6 sm:p-8">
-            <h3 className="text-lg font-bold">Чего HolyPlastic не запрашивает</h3>
-            <ul className="mt-4 space-y-3">
-              {never.map((n) => (
-                <li key={n} className="flex items-start gap-3 text-sm text-foreground/80">
-                  <X className="mt-0.5 size-4 shrink-0 text-[var(--pink)]" aria-hidden="true" />
-                  {n}
-                </li>
-              ))}
+
+        <div className="mt-14 grid gap-12 sm:mt-20 sm:grid-cols-2">
+          <Reveal delay={80}>
+            <p className="kicker text-[color:var(--ink)]">Нужно</p>
+            <div className="hairline my-5 text-[color:var(--ink)]" />
+            <ul className="space-y-4 text-[1.35rem] leading-tight font-semibold sm:text-[2vw]">
+              <li>Загранпаспорт или внутренний паспорт РФ / РБ</li>
+              <li>Email</li>
+              <li>Телефон</li>
             </ul>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <p className="kicker text-[color:var(--ink)]">Не запрашиваем</p>
+            <div className="hairline my-5 text-[color:var(--ink)]" />
+            <ul className="space-y-4 text-[1.35rem] leading-tight font-semibold opacity-45 sm:text-[2vw]">
+              <li>PIN</li>
+              <li>CVV</li>
+              <li>Пароль от банка</li>
+              <li>Коды после выдачи карты</li>
+            </ul>
+          </Reveal>
+        </div>
+
+        <Reveal delay={220}>
+          <div className="hairline mt-16 text-[color:var(--ink)]" />
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <p className="text-base font-semibold">Решение о выпуске принимает банк.</p>
+            <p className="text-base opacity-60">
+              Работаем только с достоверными данными и в рамках правил банка.
+            </p>
           </div>
         </Reveal>
       </div>
-
-      <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-        {badges.map((b, i) => (
-          <Reveal as="li" key={b} delay={i * 70}>
-            <div className="glass flex h-full items-center gap-3 rounded-2xl px-5 py-4 text-sm font-medium text-foreground/80">
-              <ShieldCheck className="size-4 shrink-0 text-[var(--violet)]" aria-hidden="true" />
-              {b}
-            </div>
-          </Reveal>
-        ))}
-      </ul>
-
-      <Reveal delay={120}>
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          Клиент предоставляет только достоверные данные и соблюдает правила банка, платёжной системы
-          и применимое законодательство.
-        </p>
-      </Reveal>
-    </Section>
+    </section>
   );
 }
 
 const STEPS = [
-  { n: "01", title: "Консультация", text: "Разбираем сценарий и отвечаем, подходит ли вариант." },
-  { n: "02", title: "Документы", text: "Собираем минимальный комплект и проверяем данные." },
-  { n: "03", title: "Подача с сопровождением", text: "Проходим оформление вместе, шаг за шагом." },
-  { n: "04", title: "Получение и активация", text: "Помогаю с получением карты и базовой активацией." },
+  { n: "01", t: "Выбор", d: "Обсуждаем сценарий и формат карты." },
+  { n: "02", t: "Документы", d: "Собираем паспорт и контактные данные." },
+  { n: "03", t: "Подача", d: "Оформляем заявку и сопровождаем проверку." },
+  { n: "04", t: "Получение", d: "Активация, кошелёк, первые платежи." },
 ];
 
 function Steps() {
   return (
-    <Section id="steps">
-      <Reveal>
-        <p className="eyebrow">Этапы</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          От сообщения до готовой карты
-        </h2>
-      </Reveal>
+    <section id="steps" className="py-24 sm:py-36">
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+        <Reveal>
+          <h2 className="display text-[13vw] leading-none sm:text-[7vw]">4 шага</h2>
+        </Reveal>
 
-      <div className="relative mt-10">
-        <div
-          aria-hidden="true"
-          className="chrome-rule absolute inset-x-0 top-[42px] hidden md:block"
-        />
-        <ol className="grid gap-4 md:grid-cols-4">
-          {STEPS.map((s, i) => (
-            <Reveal as="li" key={s.n} delay={i * 110}>
-              <div className="glass h-full rounded-3xl p-6">
-                <span className="spectral-text text-2xl font-extrabold tracking-tight">{s.n}</span>
-                <h3 className="mt-3 text-base font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </ol>
-      </div>
+        <div className="relative mt-16 sm:mt-24">
+          <div aria-hidden="true" className="hairline absolute top-6 right-0 left-0 hidden text-white sm:block" />
+          <ol className="grid gap-12 sm:grid-cols-4 sm:gap-8">
+            {STEPS.map((s, i) => (
+              <Reveal as="li" key={s.n} delay={i * 90} className="relative sm:pt-14">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-[18px] left-0 hidden size-3 rounded-full bg-white sm:block"
+                />
+                <span className="kicker text-white">{s.n}</span>
+                <p className="display mt-3 text-[8vw] leading-none sm:text-[2.4vw]">{s.t}</p>
+                <p className="mt-3 text-sm text-white/55">{s.d}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
 
-      <Reveal delay={100}>
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          Подача и сопровождение обычно занимают до одного дня. Проверка банка и доставка физической
-          карты могут занять больше времени.
+        <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
+          Подача и сопровождение обычно занимают до одного дня. Проверка банка и доставка пластика
+          могут занять больше времени.
         </p>
-      </Reveal>
-    </Section>
+      </div>
+    </section>
   );
 }
-
-const PLANS = [
-  {
-    title: "Виртуальная Visa",
-    price: "12 000 ₽",
-    cta: "Выбрать виртуальную",
-    items: [
-      "Сопровождение оформления",
-      "Виртуальный формат карты",
-      "Инструкция по активации и пополнению",
-      "Поддержка по этапам",
-    ],
-  },
-  {
-    title: "Физическая Visa",
-    price: "15 000 ₽",
-    suffix: "+ доставка",
-    cta: "Выбрать физическую",
-    items: [
-      "Всё из тарифа «Виртуальная Visa»",
-      "Выпуск пластиковой карты",
-      "Помощь с организацией доставки",
-    ],
-  },
-];
 
 function Pricing() {
   return (
-    <Section id="pricing">
-      <Reveal>
-        <p className="eyebrow">Тарифы</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Понятная цена за сопровождение
-        </h2>
-      </Reveal>
-
-      <div className="mt-10 grid gap-4 md:grid-cols-2">
-        {PLANS.map((p, i) => (
-          <Reveal key={p.title} delay={i * 110}>
-            <div className="glass grain flex h-full flex-col rounded-3xl p-7 sm:p-8">
-              <h3 className="text-lg font-bold">{p.title}</h3>
-              <p className="mt-3 flex flex-wrap items-baseline gap-2">
-                <span className="text-4xl font-extrabold tracking-tight sm:text-5xl">{p.price}</span>
-                {p.suffix && (
-                  <span className="text-sm font-medium text-muted-foreground">{p.suffix}</span>
-                )}
-              </p>
-              <ul className="mt-6 flex-1 space-y-3">
-                {p.items.map((it) => (
-                  <li key={it} className="flex items-start gap-3 text-sm text-foreground/80">
-                    <Check className="mt-0.5 size-4 shrink-0 text-[var(--blue)]" aria-hidden="true" />
-                    {it}
-                  </li>
-                ))}
-              </ul>
-              <TgLink className="mt-7 w-full">
-                {p.cta}
-                <ArrowUpRight className="size-4" aria-hidden="true" />
-              </TgLink>
-            </div>
-          </Reveal>
-        ))}
+    <section id="pricing" className="border-t border-white/10">
+      <div className="mx-auto w-full max-w-[1400px] px-5 pt-24 sm:px-8 sm:pt-32">
+        <Reveal>
+          <h2 className="display text-[13vw] leading-none sm:text-[7vw]">Два формата</h2>
+        </Reveal>
       </div>
 
-      <Reveal delay={100}>
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          Итоговые комиссии банка, платежных провайдеров и доставки, если они возникают, уточняются
-          до начала оформления.
+      <div className="mt-14 grid sm:mt-20 lg:grid-cols-2">
+        <Reveal className="flex min-h-[70svh] flex-col justify-between px-5 py-16 sm:px-12">
+          <div>
+            <p className="kicker text-white">Virtual</p>
+            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+              12 000 ₽
+            </p>
+            <ul className="mt-10 space-y-3 text-sm text-white/65">
+              <li>Виртуальная Visa для онлайн-платежей</li>
+              <li>Подключение к кошельку телефона</li>
+              <li>Сопровождение до первой операции</li>
+            </ul>
+          </div>
+          <div className="mt-12">
+            <TgLink className={`${btnLight} w-full sm:w-auto`} label="Выбрать виртуальную карту в Telegram">
+              Выбрать виртуальную
+            </TgLink>
+            <p className="mt-6 text-xs text-white/40">
+              Возможны комиссии банка и провайдеров пополнения — уточняем до оплаты.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal
+          delay={120}
+          className="scene-milk flex min-h-[70svh] flex-col justify-between px-5 py-16 sm:px-12"
+        >
+          <div>
+            <p className="kicker text-[color:var(--ink)]">Physical</p>
+            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+              15 000 ₽
+            </p>
+            <p className="mt-2 text-sm opacity-60">+ доставка</p>
+            <ul className="mt-10 space-y-3 text-sm opacity-70">
+              <li>Виртуальная и пластиковая Visa</li>
+              <li>Офлайн-платежи и снятие наличных</li>
+              <li>Сопровождение до активации пластика</li>
+            </ul>
+          </div>
+          <div className="mt-12">
+            <TgLink
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[color:var(--ink)] px-7 text-[0.78rem] font-bold tracking-[0.16em] text-white uppercase transition-transform duration-300 hover:scale-[1.03] sm:w-auto"
+              label="Выбрать физическую карту в Telegram"
+            >
+              Выбрать физическую
+            </TgLink>
+            <p className="mt-6 text-xs opacity-50">
+              Стоимость и срок доставки зависят от направления; возможны комиссии банка и
+              провайдеров.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+
+  const copy = useCallback(async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(EMAIL);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = EMAIL;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      setCopied(true);
+      if (timer.current) clearTimeout(timer.current);
+      timer.current = setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+      window.prompt("Скопируйте адрес почты", EMAIL);
+    }
+  }, []);
+
+  return (
+    <section
+      id="contact"
+      className="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-28 text-center sm:px-8"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] -translate-x-1/2 rounded-full opacity-35 blur-[120px]"
+          style={{
+            background:
+              "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--violet) 60%, transparent), transparent 62%), radial-gradient(circle at 70% 60%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 60%)",
+          }}
+        />
+      </div>
+
+      <Reveal className="flex flex-col items-center">
+        <Logo tone="light" className="h-14 sm:h-20" />
+        <h2 className="display mt-10 text-[18vw] leading-none sm:text-[9vw]">Начнём?</h2>
+        <p className="mt-6 max-w-md text-sm text-white/60">
+          Напишите в Telegram — разберём ваш сценарий и подберём формат карты.
+        </p>
+
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+          <TgLink className={btnLight} label="Написать в Telegram">
+            <Send className="size-4" aria-hidden="true" /> Написать в Telegram
+          </TgLink>
+          <a href={MAILTO} className={`${btnGhost} text-white`}>
+            <Mail className="size-4" aria-hidden="true" /> Написать письмо
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
+          <button
+            type="button"
+            onClick={copy}
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
+          >
+            {copied ? <Check className="size-4" aria-hidden="true" /> : <Copy className="size-4" aria-hidden="true" />}
+            {copied ? "Скопировано" : "Скопировать почту"}
+          </button>
+          <span aria-live="polite" className="sr-only">
+            {copied ? "Адрес скопирован" : ""}
+          </span>
+        </div>
+
+        <p className="mt-10 max-w-sm text-xs text-white/35">
+          Не отправляйте паспорт, данные карты или коды в первом сообщении.
         </p>
       </Reveal>
-    </Section>
-  );
-}
-
-const FAQ = [
-  {
-    q: "Какие документы нужны?",
-    a: "Заграничный или внутренний паспорт РФ/РБ, email и номер телефона. Точный комплект подтверждаем на консультации до начала оформления.",
-  },
-  {
-    q: "Сколько занимает оформление?",
-    a: "Подача и сопровождение обычно занимают до одного дня. Проверка банка и доставка физической карты могут занять больше времени.",
-  },
-  {
-    q: "Можно ли добавить карту в Apple Pay?",
-    a: "Добавление в Wallet возможно, если оно доступно для выпущенной карты и региона вашего аккаунта. Гарантию по этому пункту не даю.",
-  },
-  {
-    q: "Как пополнять карту?",
-    a: "Доступные способы пополнения, включая вариант криптовалютного маршрута, разбираем заранее: объясняю порядок, комиссии и ограничения. Доступность зависит от провайдеров и применимых правил.",
-  },
-  {
-    q: "Можно ли получать переводы из Европы и США?",
-    a: "Такой сценарий возможен, но конкретные реквизиты, условия и ограничения уточняются до оформления и зависят от правил банка.",
-  },
-  {
-    q: "Как доставляется физическая карта?",
-    a: "Помогаю организовать доставку выпущенного пластика. Стоимость и сроки зависят от маршрута и обсуждаются до оплаты сопровождения.",
-  },
-  {
-    q: "Гарантирован ли выпуск?",
-    a: "Нет. Решение об открытии счёта и выпуске карты принимает банк после проверки документов (KYC/AML).",
-  },
-  {
-    q: "HolyPlastic — это банк?",
-    a: "Нет. HolyPlastic оказывает информационно-консультационное сопровождение и не является банком, эмитентом или платежной системой.",
-  },
-];
-
-function Faq() {
-  return (
-    <Section id="faq">
-      <Reveal>
-        <p className="eyebrow">FAQ</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Частые вопросы
-        </h2>
-      </Reveal>
-
-      <div className="mt-10 grid gap-3">
-        {FAQ.map((f, i) => (
-          <Reveal key={f.q} delay={i * 40}>
-            <details className="glass group rounded-2xl px-5 py-1 sm:px-6">
-              <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-3 text-sm font-semibold text-foreground sm:text-base">
-                {f.q}
-                <span
-                  aria-hidden="true"
-                  className="flex size-8 shrink-0 items-center justify-center rounded-full border border-hairline text-muted-foreground transition-transform duration-300 group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p className="pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-            </details>
-          </Reveal>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function FinalCta() {
-  return (
-    <Section id="contact">
-      <Reveal>
-        <div className="glass grain relative overflow-hidden rounded-[2rem] p-8 text-center sm:p-14">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Сначала разберём ваш сценарий — потом оформляем
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Напишите, для чего нужна карта: подписки, путешествия, работа, переводы или повседневные
-            международные платежи. Я заранее скажу, подходит ли вам этот вариант и какие будут
-            расходы.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <TgLink>
-              <Send className="size-4" aria-hidden="true" />
-              Написать @holy_plastic
-            </TgLink>
-            <a
-              href={MAIL}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-hairline bg-white/70 px-6 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
-            >
-              holyplastic@yandex.com
-            </a>
-          </div>
-          <p className="mt-6 text-xs text-muted-foreground">
-            Не отправляйте паспорт, данные карты или коды в первом сообщении.
-          </p>
-        </div>
-      </Reveal>
-    </Section>
+    </section>
   );
 }
 
 function Footer() {
-  const year = new Date().getFullYear();
   return (
-    <footer className="relative px-5 pb-32 sm:px-8 sm:pb-16">
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="chrome-rule mb-10" />
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
-          <div>
-            <Logo className="h-24" imgClassName="scale-[1.2]" />
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Личное сопровождение оформления международной дебетовой Visa.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold">Контакты</h3>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <a
-                  href={TG}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="story-link inline-flex min-h-[44px] items-center text-muted-foreground hover:text-foreground"
-                >
-                  Telegram · @holy_plastic
-                </a>
-              </li>
-              <li>
-                <a
-                  href={MAIL}
-                  className="story-link inline-flex min-h-[44px] items-center text-muted-foreground hover:text-foreground"
-                >
-                  holyplastic@yandex.com
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold">Навигация</h3>
-            <ul className="mt-3 grid grid-cols-2 gap-x-4">
-              {NAV.map((n) => (
-                <li key={n.href}>
-                  <a
-                    href={n.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-muted-foreground hover:text-foreground"
-                  >
-                    {n.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+    <footer className="border-t border-white/10 px-5 py-16 pb-28 sm:px-8 lg:pb-16">
+      <div className="mx-auto w-full max-w-[1400px]">
+        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
+          <Logo tone="light" className="h-10 sm:h-12" />
+
+          <nav aria-label="Навигация в подвале" className="flex flex-wrap gap-x-8 gap-y-3">
+            {NAV.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                className="text-[0.68rem] font-semibold tracking-[0.22em] text-white/50 uppercase hover:text-white"
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex flex-col gap-3 text-sm">
+            <TgLink className="inline-flex min-h-[44px] items-center gap-2 text-white/80 hover:text-white">
+              <Send className="size-4" aria-hidden="true" /> @holy_plastic
+            </TgLink>
+            <a
+              href={MAILTO}
+              className="inline-flex min-h-[44px] items-center gap-2 text-white/80 hover:text-white"
+            >
+              <Mail className="size-4" aria-hidden="true" /> {EMAIL}
+            </a>
           </div>
         </div>
 
-        <p className="mt-10 text-[0.7rem] leading-relaxed text-muted-foreground sm:text-xs">
-          HolyPlastic оказывает информационно-консультационное сопровождение и не является банком,
-          эмитентом Visa, платежной системой, финансовым учреждением или представителем перечисленных
-          брендов. Решение об открытии счёта и выпуске карты принимает соответствующий банк после
-          KYC/AML-проверки. Условия, комиссии, лимиты, сроки, способы пополнения, Apple Pay и
-          географическая доступность могут меняться и уточняются до оформления. Visa и Apple Pay —
-          товарные знаки соответствующих правообладателей.
+        <div className="hairline my-10 text-white" />
+
+        <p className="max-w-4xl text-xs leading-relaxed text-white/35">
+          HolyPlastic — консультационное сопровождение оформления карты. Мы не являемся банком,
+          эмитентом или платёжной системой и не выпускаем карты. Решение о выпуске принимает банк по
+          результатам собственных проверок KYC/AML. Условия обслуживания, комиссии и доступность
+          сервисов определяются банком и могут изменяться.
         </p>
-        <p className="mt-4 text-[0.7rem] text-muted-foreground">© {year} HolyPlastic</p>
+        <p className="mt-6 text-xs text-white/25">© {new Date().getFullYear()} HolyPlastic</p>
       </div>
     </footer>
   );
 }
 
 function StickyCta() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver((entries) => setHidden(entries[0]?.isIntersecting ?? false), {
+      rootMargin: "0px 0px -10% 0px",
+    });
+    io.observe(footer);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(12px,env(safe-area-inset-bottom))] sm:hidden">
-      <TgLink className="w-full shadow-[var(--shadow-lift)]">
-        <Send className="size-4" aria-hidden="true" />
-        Написать в Telegram
+    <div
+      className={`fixed inset-x-4 bottom-4 z-40 transition-all duration-300 lg:hidden ${
+        hidden ? "pointer-events-none translate-y-6 opacity-0" : "opacity-100"
+      }`}
+    >
+      <TgLink className={`${btnLight} w-full shadow-[0_20px_40px_-20px_rgba(0,0,0,0.9)]`} label="Написать в Telegram">
+        <Send className="size-4" aria-hidden="true" /> Написать в Telegram
       </TgLink>
     </div>
   );
 }
 
-function HomePage() {
+function Home() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <Orbs />
+    <div className="relative">
       <Header />
       <main>
         <Hero />
         <Services />
         <Features />
-        <Safety />
+        <Security />
         <Steps />
         <Pricing />
-        <Faq />
-        <FinalCta />
+        <Contact />
       </main>
       <Footer />
       <StickyCta />
