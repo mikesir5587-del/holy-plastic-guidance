@@ -127,7 +127,7 @@ function Header() {
           <Logo
             tone="light"
             priority
-            className={`transition-all duration-500 ${scrolled ? "h-7" : "h-9 sm:h-11"}`}
+            className={`transition-all duration-500 ${scrolled ? "h-8" : "h-10 sm:h-12"}`}
           />
         </a>
 
@@ -237,8 +237,8 @@ function Hero() {
       </div>
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
-        <div className="flex items-baseline justify-between">
-          <h1 className="display text-[15vw] leading-[0.86] sm:text-[11vw] lg:text-[8.5vw]">
+        <div className="relative z-10 flex items-baseline justify-between">
+          <h1 className="display text-[15vw] leading-[0.86] sm:text-[11vw] lg:text-[7.4vw]">
             <span className="block" style={motion ? p(-0.05) : undefined}>
               Visa
             </span>
@@ -261,14 +261,14 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 sm:px-8">
-        <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,620px)_1fr]">
+        <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,560px)_1fr]">
           <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
             Apple&nbsp;Pay и доступных переводов.
           </p>
 
           <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
-            <CardArt className="mx-auto w-full max-w-[620px]" />
+            <CardArt className="mx-auto w-full max-w-[560px]" />
           </div>
 
           <div className="order-3 flex flex-col items-start gap-5 lg:items-end">
