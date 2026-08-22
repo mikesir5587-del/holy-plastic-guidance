@@ -19,7 +19,7 @@ import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
 import passportPhoto from "@/assets/passport-card.webp.asset.json";
 import handsPhoto from "@/assets/guardian-hands.webp.asset.json";
 import cardPairPhoto from "@/assets/card-pair.webp.asset.json";
-import { CardArt } from "@/components/site/CardArt";
+import { HeroLiquidCard } from "@/components/site/HeroLiquidCard";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
