@@ -95,7 +95,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "viewport",
         content: "width=device-width, initial-scale=1, viewport-fit=cover",
       },
+      // GitHub Pages cannot send response headers, so ship a CSP fallback in the
+      // document. `frame-ancestors` is intentionally omitted (ignored in meta);
+      // netlify.toml / public/_headers keep the full header policy for hosts
+      // that support it. Production-only: the dev server needs ws:/eval for HMR.
+      ...(import.meta.env.PROD
+        ? [
+            {
+              "http-equiv": "Content-Security-Policy",
+              content:
+                "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; frame-src 'none'; worker-src 'self' blob:",
+            },
+          ]
+        : []),
       { title: "HolyPlastic — Visa без границ" },
+
       {
         name: "description",
         content:
