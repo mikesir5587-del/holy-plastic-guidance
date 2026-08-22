@@ -51,6 +51,22 @@ function Installation({
         <div className="grid-lines absolute inset-0 opacity-40" />
         <ScanBeam className="opacity-40" />
 
+        {photo ? (
+          <img
+            src={photo.url}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen ${photoClass}`}
+            style={{
+              maskImage:
+                "radial-gradient(72% 72% at 50% 46%, black 40%, transparent 78%)",
+            }}
+          />
+        ) : null}
+
+
         <svg
           viewBox="0 0 320 240"
           className="absolute inset-0 h-full w-full"
