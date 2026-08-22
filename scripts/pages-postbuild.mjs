@@ -18,6 +18,8 @@ const notFound = `<!doctype html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; script-src 'none'; object-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:" />
+
     <title>Страница не найдена — HolyPlastic</title>
     <meta name="description" content="Такой страницы на сайте HolyPlastic нет или она была перемещена." />
     <meta name="robots" content="noindex, follow" />
