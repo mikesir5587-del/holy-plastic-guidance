@@ -716,44 +716,25 @@ function Pricing() {
         <Reveal variant="blur" delay={80} className="relative mt-12 sm:mt-16">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-5 -z-10 rounded-[3.5rem] opacity-70 blur-3xl"
+            className="pointer-events-none absolute -inset-x-10 -top-16 -bottom-16 -z-10 opacity-80 blur-3xl"
             style={{
               background:
-                "radial-gradient(50% 70% at 50% 50%, color-mix(in oklab, var(--magenta) 40%, transparent), transparent 72%), radial-gradient(50% 70% at 20% 60%, color-mix(in oklab, var(--cyan) 34%, transparent), transparent 72%)",
+                "radial-gradient(45% 60% at 50% 50%, color-mix(in oklab, var(--magenta) 34%, transparent), transparent 72%), radial-gradient(40% 60% at 20% 60%, color-mix(in oklab, var(--cyan) 30%, transparent), transparent 72%)",
             }}
           />
-          <figure
-            className="glass-panel relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] sm:aspect-[21/9]"
-            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
-          >
-            <img
-              src={CARD_PAIR_PHOTO}
-              alt="Виртуальная и физическая карты Visa рядом на пьедестале"
-              width={640}
-              height={640}
-              loading="lazy"
-              decoding="async"
-              sizes="(min-width: 640px) 92vw, 92vw"
-              className="scene-kenburns absolute inset-0 h-full w-full scale-[1.35] object-cover object-[50%_38%] sm:scale-100"
-              style={{
-                animationDelay: "-14s",
-                maskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[inherit]"
-              style={{
-                boxShadow:
-                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--violet) 90%, transparent)",
-              }}
-            />
-            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
-              Virtual · Physical
-            </figcaption>
-          </figure>
+          <img
+            src={CARD_PAIR_PHOTO}
+            alt="Виртуальная и физическая карты Visa рядом на пьедестале"
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 640px) 92vw, 92vw"
+            className="art-object art-screen art-float relative block h-[52vw] max-h-[520px] w-full sm:h-[34vw]"
+            style={{ animationDelay: "-4s" }}
+          />
         </Reveal>
+
       </div>
 
       <div className="mt-14 grid sm:mt-20 lg:grid-cols-2">
