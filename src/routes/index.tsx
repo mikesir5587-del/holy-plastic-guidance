@@ -736,19 +736,41 @@ function Contact() {
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-60" />
-        <div
-          className="absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] -translate-x-1/2 rounded-full opacity-35 blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--violet) 60%, transparent), transparent 62%), radial-gradient(circle at 70% 60%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 60%)",
-          }}
+        <div className="caustic absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-40" />
+        <SectionOrbits
+          className="top-[38%] left-1/2 aspect-square w-[150vw] max-w-[1150px] -translate-x-1/2 -translate-y-1/2"
+          rings={4}
+          nodes={3}
+          opacity={0.45}
         />
         <div className="chrome-arc drift absolute bottom-[-30%] left-1/2 aspect-square w-[110vw] max-w-[1200px] -translate-x-1/2" />
+        <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
+        <GlassFragment className="top-[22%] left-[8%] hidden size-28 sm:block" rotate={-20} />
+        <GlassFragment
+          className="right-[9%] bottom-[26%] hidden size-24 sm:block"
+          rotate={18}
+          delay={5}
+        />
       </div>
 
-      <Reveal className="flex flex-col items-center">
-        <Logo className="h-20 sm:h-28" />
+      <Reveal className="relative z-10 flex flex-col items-center">
+        <span className="relative flex items-center justify-center">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute aspect-square w-[240%] rounded-full border border-white/12"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute aspect-square w-[360%] rounded-full border border-white/8"
+          />
+          <span
+            aria-hidden="true"
+            className="lens pointer-events-none absolute aspect-[3/2] w-[170%] opacity-70"
+          />
+          <Logo className="relative h-20 sm:h-28" />
+        </span>
         <h2 className="display h-hero mt-10 leading-none">Начнём?</h2>
+
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
           <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
