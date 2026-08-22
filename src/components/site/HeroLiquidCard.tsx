@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import heroCard from "@/assets/chrome-sculpture.webp.asset.json";
+
+const HERO_CARD = "/media/hero-liquid-card.webp";
 
 /**
  * Hero 3D object: the liquid-chrome Visa render is the single hero subject.
@@ -118,7 +119,7 @@ export function HeroLiquidCard({ className = "" }: { className?: string }) {
       >
         <div className={motion ? "hero-card-float" : undefined}>
           <img
-            src={heroCard.url}
+            src={HERO_CARD}
             alt="Дебетовая Visa HolyPlastic в жидко-хромовой оболочке"
             width={900}
             height={600}
