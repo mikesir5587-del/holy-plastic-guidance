@@ -505,11 +505,12 @@ function Security() {
                 </p>
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-6 bottom-0 h-10 opacity-25"
+                  className="pointer-events-none absolute inset-x-6 bottom-5 h-px opacity-30"
                   style={{
-                    background: `linear-gradient(180deg, color-mix(in oklab, var(--ink) ${8 + i * 3}%, transparent), transparent)`,
+                    background: `linear-gradient(90deg, color-mix(in oklab, var(--ink) ${18 + i * 6}%, transparent), transparent)`,
                   }}
                 />
+
               </li>
             ))}
           </ol>
