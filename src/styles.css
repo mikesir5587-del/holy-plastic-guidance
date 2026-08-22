@@ -436,20 +436,21 @@
 
 /* --- decoration language: lenses, caustics, orbits, rails --- */
 @utility lens {
-  border-radius: 30% 70% 62% 38% / 44% 36% 64% 56%;
+  border-radius: 46% 54% 58% 42% / 48% 44% 56% 52%;
   background:
     linear-gradient(
       135deg,
-      color-mix(in oklab, white 12%, transparent),
-      color-mix(in oklab, white 2%, transparent) 45%,
-      color-mix(in oklab, var(--cyan) 10%, transparent)
+      color-mix(in oklab, white 9%, transparent),
+      transparent 55%,
+      color-mix(in oklab, var(--cyan) 7%, transparent)
     );
-  backdrop-filter: blur(14px) saturate(150%);
-  border: 1px solid color-mix(in oklab, white 16%, transparent);
+  backdrop-filter: blur(10px) saturate(140%) brightness(1.12);
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
   box-shadow:
-    inset 0 1px 0 color-mix(in oklab, white 30%, transparent),
-    inset 0 -18px 40px -30px color-mix(in oklab, var(--magenta) 60%, transparent),
-    0 40px 80px -60px oklch(0 0 0 / 0.9);
+    inset 0 1px 0 color-mix(in oklab, white 26%, transparent),
+    inset 0 -14px 34px -26px color-mix(in oklab, var(--magenta) 45%, transparent);
+  opacity: 0.75;
+
   &[data-tone="light"] {
     background: linear-gradient(
       135deg,
