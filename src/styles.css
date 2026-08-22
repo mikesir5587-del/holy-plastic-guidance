@@ -433,3 +433,142 @@
 @utility drift {
   animation: hp-drift 22s ease-in-out infinite;
 }
+
+/* --- decoration language: lenses, caustics, orbits, rails --- */
+@utility lens {
+  border-radius: 30% 70% 62% 38% / 44% 36% 64% 56%;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, white 12%, transparent),
+      color-mix(in oklab, white 2%, transparent) 45%,
+      color-mix(in oklab, var(--cyan) 10%, transparent)
+    );
+  backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 30%, transparent),
+    inset 0 -18px 40px -30px color-mix(in oklab, var(--magenta) 60%, transparent),
+    0 40px 80px -60px oklch(0 0 0 / 0.9);
+  &[data-tone="light"] {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--ink) 5%, transparent),
+      transparent 60%
+    );
+    border-color: color-mix(in oklab, var(--ink) 12%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in oklab, white 60%, transparent);
+  }
+}
+
+@utility caustic {
+  border-radius: 50%;
+  filter: blur(110px);
+  background:
+    radial-gradient(circle at 32% 30%, color-mix(in oklab, var(--cyan) 55%, transparent), transparent 58%),
+    radial-gradient(circle at 70% 66%, color-mix(in oklab, var(--magenta) 48%, transparent), transparent 60%),
+    radial-gradient(circle at 52% 82%, color-mix(in oklab, var(--violet) 42%, transparent), transparent 62%);
+}
+
+@keyframes hp-orbit-node {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@utility orbit-node {
+  animation: hp-orbit-node 30s linear infinite;
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--cyan) 80%, transparent));
+}
+
+@keyframes hp-scan {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+  }
+}
+
+@utility scan-beam {
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--cyan) 16%, transparent) 45%,
+    color-mix(in oklab, white 14%, transparent) 50%,
+    color-mix(in oklab, var(--magenta) 14%, transparent) 55%,
+    transparent
+  );
+  mix-blend-mode: screen;
+  animation: hp-scan 14s ease-in-out infinite;
+}
+
+@keyframes hp-dash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@utility dash-flow {
+  animation: hp-dash 18s linear infinite;
+}
+
+@keyframes hp-pulse-rail {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  12%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@utility rail-pulse {
+  animation: hp-pulse-rail 9s ease-in-out infinite;
+}
+
+@keyframes hp-pulse-rail-x {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  12%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@utility rail-pulse-x {
+  animation: hp-pulse-rail-x 11s ease-in-out infinite;
+}
+
+@utility emboss {
+  background-image:
+    repeating-linear-gradient(
+      118deg,
+      color-mix(in oklab, currentColor 6%, transparent) 0 1px,
+      transparent 1px 26px
+    );
+  mask-image: radial-gradient(90% 80% at 30% 20%, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(90% 80% at 30% 20%, black, transparent 80%);
+}
+
+@utility price-emboss {
+  text-shadow:
+    0 1px 0 color-mix(in oklab, white 22%, transparent),
+    0 -1px 0 color-mix(in oklab, black 45%, transparent),
+    0 24px 50px color-mix(in oklab, black 45%, transparent);
+}
