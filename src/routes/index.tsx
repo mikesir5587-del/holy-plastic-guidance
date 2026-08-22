@@ -924,7 +924,7 @@ function Contact() {
         />
         <img
           src={CLOSING_CARD_PHOTO}
-          alt="Стеклянная карта HolyPlastic с переливающимся光 — финальный образ бренда"
+          alt="Стеклянная карта HolyPlastic с переливающимся свечением — финальный образ бренда"
           width={1300}
           height={867}
           loading="lazy"
