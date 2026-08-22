@@ -16,7 +16,9 @@ import { Copy, Check, ArrowUpRight, Send, Mail } from "lucide-react";
 
 import heroWave from "@/assets/hero-chrome-wave.webp.asset.json";
 import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
-import kycPhoto from "@/assets/kyc-portal.webp.asset.json";
+import passportPhoto from "@/assets/passport-card.webp.asset.json";
+import handsPhoto from "@/assets/guardian-hands.webp.asset.json";
+import cardPairPhoto from "@/assets/card-pair.webp.asset.json";
 import { CardArt } from "@/components/site/CardArt";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
@@ -563,12 +565,15 @@ function Steps() {
         <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
         <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
         <img
-          src={kycPhoto.url}
+          src={passportPhoto.url}
           alt=""
           aria-hidden="true"
+          width={640}
+          height={640}
           loading="lazy"
           decoding="async"
-          className="absolute top-[6%] right-[-8%] hidden aspect-square w-[38vw] max-w-[420px] object-cover opacity-35 mix-blend-screen lg:block"
+          sizes="(min-width: 1024px) 38vw, 0px"
+          className="absolute top-[4%] right-[-6%] hidden aspect-square w-[36vw] max-w-[400px] object-cover opacity-40 mix-blend-screen lg:block"
           style={{ maskImage: "radial-gradient(60% 60% at 50% 50%, black 30%, transparent 76%)" }}
         />
       </div>
@@ -650,6 +655,18 @@ function Pricing() {
             opacity={0.25}
           />
           <GlassFragment className="top-[12%] right-[8%] size-20 sm:size-28" rotate={-18} />
+          <img
+            src={cardPairPhoto.url}
+            alt=""
+            aria-hidden="true"
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 640px) 30vw, 62vw"
+            className="pointer-events-none absolute right-[-10%] bottom-[2%] aspect-square w-[62vw] max-w-[360px] object-cover opacity-60 mix-blend-screen sm:right-[4%] sm:bottom-[8%] sm:w-[30vw]"
+            style={{ maskImage: "radial-gradient(62% 62% at 50% 50%, black 30%, transparent 76%)" }}
+          />
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 right-0 hidden w-px lg:block"
@@ -783,6 +800,18 @@ function Contact() {
         />
         <div className="chrome-arc drift absolute bottom-[-30%] left-1/2 aspect-square w-[110vw] max-w-[1200px] -translate-x-1/2" />
         <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
+        <img
+          src={handsPhoto.url}
+          alt=""
+          aria-hidden="true"
+          width={720}
+          height={720}
+          loading="lazy"
+          decoding="async"
+          sizes="(min-width: 640px) 46vw, 88vw"
+          className="absolute top-[16%] left-1/2 aspect-square w-[88vw] max-w-[520px] -translate-x-1/2 object-cover opacity-30 mix-blend-screen sm:w-[46vw]"
+          style={{ maskImage: "radial-gradient(58% 62% at 50% 50%, black 26%, transparent 74%)" }}
+        />
         <GlassFragment className="top-[22%] left-[8%] hidden size-28 sm:block" rotate={-20} />
         <GlassFragment
           className="right-[9%] bottom-[26%] hidden size-24 sm:block"
