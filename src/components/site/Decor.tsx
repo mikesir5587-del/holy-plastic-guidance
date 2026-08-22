@@ -10,6 +10,8 @@
  * in styles.css) stops everything without extra JS.
  */
 
+import { useId } from "react";
+
 type Tone = "light" | "dark";
 
 /** Small floating pane of smoked glass with a refracting edge. */
@@ -48,6 +50,7 @@ export function SectionOrbits({
 }) {
   const cx = 200;
   const cy = 200;
+  const gradientId = `hp-orbit-stroke-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   return (
     <svg
       aria-hidden="true"
@@ -57,13 +60,13 @@ export function SectionOrbits({
       role="presentation"
     >
       <defs>
-        <linearGradient id="hp-orbit-stroke" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="var(--cyan)" stopOpacity="0.85" />
           <stop offset="50%" stopColor="var(--violet)" stopOpacity="0.5" />
           <stop offset="100%" stopColor="var(--magenta)" stopOpacity="0.8" />
         </linearGradient>
       </defs>
-      <g fill="none" stroke="url(#hp-orbit-stroke)">
+      <g fill="none" stroke={`url(#${gradientId})`}>
         {Array.from({ length: rings }).map((_, i) => {
           const r = 60 + i * 52;
           return (
