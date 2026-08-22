@@ -18,6 +18,14 @@ import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
 import { SceneWallet, SceneRoutes, SceneFormats } from "@/components/site/FeatureScene";
+import {
+  AtmosphericField,
+  GlassFragment,
+  ScanBeam,
+  SectionOrbits,
+  TopoLines,
+} from "@/components/site/Decor";
+
 
 const TELEGRAM = "https://t.me/holy_plastic";
 const EMAIL = "holyplastic@yandex.com";
@@ -259,12 +267,14 @@ function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-70" />
         <div
-          className="absolute top-[30%] left-1/2 h-[70vw] w-[70vw] -translate-x-1/2 rounded-full opacity-45 blur-[110px]"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 60%), radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--magenta) 55%, transparent), transparent 62%)",
-            ...(motion ? p(0.06) : {}),
-          }}
+          className="caustic absolute top-[26%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-45"
+          style={motion ? p(0.06) : undefined}
+        />
+        <SectionOrbits
+          className="top-[46%] left-1/2 aspect-square w-[150vw] max-w-[1250px] -translate-x-1/2 -translate-y-1/2"
+          rings={4}
+          nodes={4}
+          opacity={0.5}
         />
         <div
           className="chrome-arc drift absolute top-[18%] left-1/2 aspect-square w-[120vw] max-w-[1500px] -translate-x-1/2"
@@ -274,7 +284,22 @@ function Hero() {
           className="chrome-arc absolute top-[42%] left-1/2 aspect-square w-[70vw] max-w-[900px] -translate-x-1/2 opacity-25"
           style={motion ? p(-0.04) : undefined}
         />
+        <TopoLines className="inset-x-0 bottom-0 h-[38%] w-full" opacity={0.22} />
+        <div style={motion ? p(0.12) : undefined}>
+          <GlassFragment className="top-[26%] left-[4%] size-24 sm:size-36" rotate={-14} />
+        </div>
+        <div style={motion ? p(-0.14) : undefined}>
+          <GlassFragment className="top-[34%] right-[5%] size-20 sm:size-28" rotate={22} delay={3} />
+        </div>
+        <div style={motion ? p(0.09) : undefined}>
+          <GlassFragment
+            className="bottom-[16%] left-[16%] hidden size-24 sm:block"
+            rotate={8}
+            delay={6}
+          />
+        </div>
       </div>
+
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <div className="relative z-10 flex items-baseline justify-between gap-4">
@@ -338,7 +363,18 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="relative border-y border-white/10 py-14 sm:py-20">
+    <section id="services" className="relative overflow-hidden border-y border-white/10 py-14 sm:py-20">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <div
+          className="absolute inset-x-0 top-1/2 h-[70%] -translate-y-1/2"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent, color-mix(in oklab, white 5%, transparent) 40%, transparent)",
+            backdropFilter: "blur(2px)",
+          }}
+        />
+        <ScanBeam className="inset-y-[30%] opacity-45" />
+      </div>
       <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
         <h2 className="display h-section leading-none">Платите глобально</h2>
       </div>
@@ -346,6 +382,7 @@ function Services() {
     </section>
   );
 }
+
 
 const FEATURES = [
   {
@@ -374,17 +411,11 @@ const FEATURES = [
 function Features() {
   return (
     <section id="features" className="relative overflow-hidden py-24 sm:py-32">
+      <AtmosphericField intensity={0.85} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
-        <div className="grid-lines absolute inset-0 opacity-40" />
-        <div
-          className="absolute top-1/3 left-[-15%] h-[60vw] w-[60vw] rounded-full opacity-25 blur-[130px]"
-          style={{
-            background:
-              "radial-gradient(circle, color-mix(in oklab, var(--violet) 60%, transparent), transparent 65%)",
-          }}
-        />
         <div className="chrome-arc absolute top-[10%] right-[-30%] aspect-square w-[80vw] max-w-[900px] opacity-30" />
       </div>
+
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Возможности</h2>
@@ -428,7 +459,20 @@ const NEEDED = [
 function Security() {
   return (
     <section id="security" className="scene-milk grain relative overflow-hidden py-24 sm:py-36">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 text-[color:var(--ink)]"
+      >
+        <div className="grid-lines absolute inset-0 opacity-70" />
+        <TopoLines className="inset-x-0 top-0 h-[40%] w-full" opacity={0.12} lines={7} />
+        <GlassFragment
+          tone="light"
+          className="top-[12%] right-[6%] size-24 sm:size-40"
+          rotate={16}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Прозрачно</h2>
         </Reveal>
@@ -436,22 +480,46 @@ function Security() {
         <Reveal delay={80} className="mt-14 sm:mt-20">
           <p className="kicker text-[color:var(--ink)]">Нужно</p>
           <div className="hairline my-6 text-[color:var(--ink)]" />
-          <ol className="grid gap-8 sm:grid-cols-3">
-            {NEEDED.map((item) => (
-              <li key={item.n} className="border-t border-[color:var(--ink)]/15 pt-6">
-                <span className="kicker text-[color:var(--ink)]">{item.n}</span>
-                <p className="mt-4 text-[1.35rem] leading-tight font-semibold sm:text-[1.8rem]">
+          <ol className="grid gap-6 sm:grid-cols-3 sm:gap-8">
+            {NEEDED.map((item, i) => (
+              <li
+                key={item.n}
+                className="group relative overflow-hidden rounded-2xl border border-[color:var(--ink)]/12 bg-white/45 p-6 backdrop-blur-sm sm:p-8"
+                style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8)" }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="emboss pointer-events-none absolute inset-0 text-[color:var(--ink)]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, color-mix(in oklab, var(--violet) 55%, transparent), transparent)",
+                  }}
+                />
+                <span className="kicker relative text-[color:var(--ink)]">{item.n}</span>
+                <p className="relative mt-4 text-[1.15rem] leading-tight font-semibold break-words hyphens-auto text-pretty md:text-[1.35rem] lg:text-[1.7rem]">
                   {item.t}
                 </p>
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-6 bottom-5 h-px opacity-30"
+                  style={{
+                    background: `linear-gradient(90deg, color-mix(in oklab, var(--ink) ${18 + i * 6}%, transparent), transparent)`,
+                  }}
+                />
+
               </li>
             ))}
           </ol>
         </Reveal>
-
       </div>
     </section>
   );
 }
+
 
 const STEPS = [
   { n: "01", t: "Выбор", d: "Обсуждаем сценарий и формат карты." },
@@ -462,23 +530,41 @@ const STEPS = [
 
 function Steps() {
   return (
-    <section id="steps" className="py-24 sm:py-36">
+    <section id="steps" className="relative overflow-hidden py-24 sm:py-36">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
+        <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
+      </div>
+
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">4 шага</h2>
         </Reveal>
 
         <div className="relative mt-16 sm:mt-24">
+          {/* glass rail: vertical on mobile, horizontal from sm */}
           <div
             aria-hidden="true"
-            className="hairline absolute top-6 right-0 left-0 hidden text-white sm:block"
-          />
+            className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15 sm:top-6 sm:right-0 sm:bottom-auto sm:left-0 sm:h-px sm:w-auto"
+          >
+            <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent sm:hidden" />
+            <span className="rail-pulse-x absolute inset-y-0 hidden w-40 bg-gradient-to-r from-transparent via-white to-transparent sm:block" />
+          </div>
+
           <ol className="grid gap-12 sm:grid-cols-4 sm:gap-8">
             {STEPS.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 90} className="relative sm:pt-14">
+              <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8 sm:pt-14 sm:pl-0">
                 <span
                   aria-hidden="true"
-                  className="absolute top-[18px] left-0 hidden size-3 rounded-full bg-white sm:block"
+                  className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)] sm:top-[17px]"
+                  style={{
+                    boxShadow:
+                      "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                  }}
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white sm:top-[22px]"
                 />
                 <span className="kicker text-white">{s.n}</span>
                 <p className="display mt-3 text-[8vw] leading-none sm:text-[2.4vw]">{s.t}</p>
@@ -489,13 +575,13 @@ function Steps() {
         </div>
 
         <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
-          Оформление обычно занимает до одного дня. Доставка физической пластиковой карты может
-          занимать больше одного дня.
+          Оформление обычно занимает до одного дня.
         </p>
       </div>
     </section>
   );
 }
+
 
 function Pricing() {
   return (
@@ -512,9 +598,32 @@ function Pricing() {
             aria-hidden="true"
             className="chrome-arc pointer-events-none absolute -top-[40%] -left-[30%] aspect-square w-[120%] opacity-20"
           />
-          <div>
+          <span
+            aria-hidden="true"
+            className="emboss pointer-events-none absolute inset-0 text-white opacity-70"
+          />
+          <div
+            aria-hidden="true"
+            className="caustic pointer-events-none absolute -right-[25%] -bottom-[25%] size-[70%] opacity-25"
+          />
+          <SectionOrbits
+            className="top-1/2 left-1/2 aspect-square w-[110%] -translate-x-1/2 -translate-y-1/2 text-white"
+            rings={2}
+            nodes={2}
+            opacity={0.25}
+          />
+          <GlassFragment className="top-[12%] right-[8%] size-20 sm:size-28" rotate={-18} />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-px lg:block"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent, color-mix(in oklab, var(--cyan) 60%, transparent) 35%, color-mix(in oklab, var(--magenta) 60%, transparent) 70%, transparent)",
+            }}
+          />
+          <div className="relative z-10">
             <p className="kicker text-white">Virtual</p>
-            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+            <p className="display price-emboss mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
               11 990 ₽
             </p>
             <ul className="mt-10 space-y-3 text-sm text-white/65">
@@ -523,7 +632,7 @@ function Pricing() {
               <li>Сопровождение до первой операции</li>
             </ul>
           </div>
-          <div className="mt-12">
+          <div className="relative z-10 mt-12">
             <TgLink
               className={`${btnLight} w-full sm:w-auto`}
               label="Выбрать виртуальную карту в Telegram"
@@ -536,11 +645,28 @@ function Pricing() {
 
         <Reveal
           delay={120}
-          className="scene-milk flex min-h-[70svh] flex-col justify-between px-5 py-16 sm:px-12"
+          className="scene-milk relative flex min-h-[70svh] flex-col justify-between overflow-hidden px-5 py-16 sm:px-12"
         >
-          <div>
+          <span
+            aria-hidden="true"
+            className="emboss pointer-events-none absolute inset-0 text-[color:var(--ink)] opacity-50"
+          />
+          <div
+            aria-hidden="true"
+            className="grid-lines pointer-events-none absolute inset-0 text-[color:var(--ink)] opacity-40"
+          />
+          <GlassFragment
+            tone="light"
+            className="right-[8%] bottom-[14%] size-24 sm:size-36"
+            rotate={12}
+            delay={4}
+          />
+          <div className="relative z-10">
             <p className="kicker text-[color:var(--ink)]">Physical</p>
-            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+            <p
+              className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]"
+              style={{ textShadow: "0 1px 0 rgba(255,255,255,0.9), 0 18px 40px rgba(0,0,0,0.16)" }}
+            >
               14 990 ₽
             </p>
             <p className="mt-2 text-sm opacity-60">+ доставка</p>
@@ -550,7 +676,7 @@ function Pricing() {
               <li>Сопровождение до активации пластика</li>
             </ul>
           </div>
-          <div className="mt-12">
+          <div className="relative z-10 mt-12">
             <TgLink
               className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[color:var(--ink)] px-7 text-[0.78rem] font-bold tracking-[0.16em] text-white uppercase transition-transform duration-300 hover:scale-[1.03] sm:w-auto"
               label="Выбрать физическую карту в Telegram"
@@ -564,6 +690,7 @@ function Pricing() {
           </div>
         </Reveal>
       </div>
+
     </section>
   );
 }
@@ -610,19 +737,41 @@ function Contact() {
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-60" />
-        <div
-          className="absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] -translate-x-1/2 rounded-full opacity-35 blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle at 40% 40%, color-mix(in oklab, var(--violet) 60%, transparent), transparent 62%), radial-gradient(circle at 70% 60%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 60%)",
-          }}
+        <div className="caustic absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-40" />
+        <SectionOrbits
+          className="top-[38%] left-1/2 aspect-square w-[150vw] max-w-[1150px] -translate-x-1/2 -translate-y-1/2"
+          rings={4}
+          nodes={3}
+          opacity={0.45}
         />
         <div className="chrome-arc drift absolute bottom-[-30%] left-1/2 aspect-square w-[110vw] max-w-[1200px] -translate-x-1/2" />
+        <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
+        <GlassFragment className="top-[22%] left-[8%] hidden size-28 sm:block" rotate={-20} />
+        <GlassFragment
+          className="right-[9%] bottom-[26%] hidden size-24 sm:block"
+          rotate={18}
+          delay={5}
+        />
       </div>
 
-      <Reveal className="flex flex-col items-center">
-        <Logo className="h-20 sm:h-28" />
+      <Reveal className="relative z-10 flex flex-col items-center">
+        <span className="relative flex items-center justify-center">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute aspect-square w-[240%] rounded-full border border-white/12"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute aspect-square w-[360%] rounded-full border border-white/8"
+          />
+          <span
+            aria-hidden="true"
+            className="lens pointer-events-none absolute aspect-[3/2] w-[170%] opacity-70"
+          />
+          <Logo className="relative h-20 sm:h-28" />
+        </span>
         <h2 className="display h-hero mt-10 leading-none">Начнём?</h2>
+
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
           <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>

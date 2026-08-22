@@ -32,12 +32,45 @@ function Row({ items, reverse }: { items: MarqueeItem[]; reverse?: boolean }) {
   );
 }
 
+function Waveform() {
+  return (
+    <svg
+      aria-hidden="true"
+      role="presentation"
+      viewBox="0 0 1200 24"
+      preserveAspectRatio="none"
+      className="my-1 h-6 w-full text-white/35"
+    >
+      <path
+        d="M0 12 H320 C340 12, 344 2, 360 2 S 380 22, 400 22 S 420 12, 440 12 H760 C780 12, 784 4, 800 4 S 820 20, 840 20 S 860 12, 880 12 H1200"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="220 260"
+        className="dash-flow"
+      />
+    </svg>
+  );
+}
+
 export function Marquee({ rowA, rowB }: { rowA: MarqueeItem[]; rowB: MarqueeItem[] }) {
   return (
-    <div className="marquee-hold">
-      <Row items={rowA} />
-      <div className="hairline my-1 text-white" />
-      <Row items={rowB} reverse />
+    <div className="marquee-hold relative">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 inset-y-2 rounded-3xl border border-white/8"
+        style={{
+          background:
+            "linear-gradient(180deg, color-mix(in oklab, white 5%, transparent), transparent 55%, color-mix(in oklab, white 4%, transparent))",
+          boxShadow: "inset 0 1px 0 color-mix(in oklab, white 14%, transparent)",
+        }}
+      />
+      <div className="relative">
+        <Row items={rowA} />
+        <Waveform />
+        <Row items={rowB} reverse />
+      </div>
     </div>
   );
 }
+
