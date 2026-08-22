@@ -64,9 +64,65 @@ export const Route = createFileRoute("/")({
           "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay и Google Pay, международные сервисы, доступные переводы.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://holy-plastic.com/" },
+      { property: "og:image", content: "https://holy-plastic.com/media/og-cover.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "HolyPlastic — дебетовая Visa Великобритании" },
+      { name: "twitter:title", content: "HolyPlastic — Visa без границ" },
+      {
+        name: "twitter:description",
+        content:
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay и Google Pay, международные сервисы, доступные переводы.",
+      },
+      { name: "twitter:image", content: "https://holy-plastic.com/media/og-cover.jpg" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://holy-plastic.com/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://holy-plastic.com/#org",
+              name: "HolyPlastic",
+              url: "https://holy-plastic.com/",
+              logo: "https://holy-plastic.com/media/holyplastic-logo-1024.webp",
+              email: EMAIL,
+              description:
+                "Консультационное сопровождение оформления дебетовой Visa Великобритании. HolyPlastic не является банком, эмитентом или платёжной системой.",
+              sameAs: [TELEGRAM],
+            },
+            {
+              "@type": "Service",
+              name: "Сопровождение оформления дебетовой Visa",
+              serviceType: "Консультационное сопровождение оформления карты",
+              provider: { "@id": "https://holy-plastic.com/#org" },
+              areaServed: "RU",
+              url: "https://holy-plastic.com/",
+              offers: [
+                {
+                  "@type": "Offer",
+                  name: "Virtual",
+                  price: "11990",
+                  priceCurrency: "RUB",
+                  url: "https://holy-plastic.com/#pricing",
+                },
+                {
+                  "@type": "Offer",
+                  name: "Physical",
+                  price: "14990",
+                  priceCurrency: "RUB",
+                  url: "https://holy-plastic.com/#pricing",
+                },
+              ],
+            },
+          ],
+        }),
+      },
+    ],
   }),
 });
 
@@ -166,7 +222,7 @@ function Header() {
             <a
               key={n.href}
               href={n.href}
-              className="text-[0.68rem] font-semibold tracking-[0.24em] text-white/60 uppercase transition-colors hover:text-white"
+              className="text-[0.68rem] font-semibold tracking-[0.24em] text-white/75 uppercase transition-colors hover:text-white"
             >
               {n.label}
             </a>
@@ -218,7 +274,7 @@ function Header() {
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="flex min-h-[48px] items-center border-b border-white/10 text-[0.8rem] font-semibold tracking-[0.2em] text-white/80 uppercase"
+                className="flex min-h-[48px] items-center border-b border-white/10 text-[0.8rem] font-semibold tracking-[0.2em] text-white/90 uppercase"
               >
                 {n.label}
               </a>
@@ -292,6 +348,8 @@ function Hero() {
         />
         <img
           src={HERO_WAVE}
+          srcSet="/media/hero-chrome-wave-960.webp 960w, /media/hero-chrome-wave-1440.webp 1440w, /media/hero-chrome-wave.webp 1600w"
+          sizes="100vw"
           alt=""
           aria-hidden="true"
           fetchPriority="high"
@@ -327,7 +385,7 @@ function Hero() {
               Visa
             </span>
             <span
-              className="block pl-[8vw] text-white/45 sm:pl-[14vw]"
+              className="block pl-[8vw] text-white/60 sm:pl-[14vw]"
               style={motion ? p(0.04) : undefined}
             >
               без
@@ -346,7 +404,7 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 sm:px-8">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,860px)_minmax(0,1fr)] lg:gap-6">
-          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1 lg:mb-16">
+          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/75 lg:order-1 lg:mb-16">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
             Apple&nbsp;Pay, Google&nbsp;Pay и доступных переводов.
           </p>
@@ -357,7 +415,7 @@ function Hero() {
 
           <div className="order-3 flex flex-col items-start gap-5 lg:mb-16 lg:items-end">
 
-            <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/55 uppercase">
+            <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/75 uppercase">
               <SiApple aria-hidden="true" /> Apple Pay
               <span aria-hidden="true" className="opacity-40">/</span>
               <SiGooglepay aria-hidden="true" className="text-[1.6em]" /> Google Pay
@@ -372,7 +430,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="mt-10 flex items-center gap-3 text-white/40">
+        <div className="mt-10 flex items-center gap-3 text-white/70">
           <span aria-hidden="true" className="relative block h-6 w-px bg-white/25">
             <span className="scroll-dot absolute top-0 -left-[1.5px] block size-[4px] rounded-full bg-white" />
           </span>
@@ -404,7 +462,7 @@ function Services() {
       <div className="mx-auto mb-12 grid w-full max-w-[1400px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)]">
         <div>
           <h2 className="display h-section leading-none">Платите глобально</h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/75">
             Подписки, магазины и поездки по всему миру. Пополнение — банковским переводом или через
             криптовалютный маршрут.
           </p>
@@ -421,6 +479,7 @@ function Services() {
           />
           <img
             src={CRYPTO_PHOTO}
+            srcSet="/media/crypto-flow-480.webp 480w, /media/crypto-flow.webp 720w"
             alt="Пополнение карты через криптовалютный маршрут"
             width={640}
             height={640}
@@ -473,7 +532,9 @@ function Features() {
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
-          <h2 className="display h-section leading-none">Возможности</h2>
+          <h2 className="display h-section max-w-full pr-1 leading-[1.02] break-words hyphens-none">
+            Возможности
+          </h2>
         </Reveal>
 
         <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-36">
@@ -490,8 +551,8 @@ function Features() {
                 >
                   <span className="kicker text-white">{f.n}</span>
                   <p className="display h-sub mt-4 leading-[0.95]">{f.word}</p>
-                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">{f.text}</p>
-                  <p className="mt-3 max-w-md text-xs leading-relaxed text-white/40">{f.sub}</p>
+                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80">{f.text}</p>
+                  <p className="mt-3 max-w-md text-xs leading-relaxed text-white/60">{f.sub}</p>
                 </div>
                 <div className={`sm:col-span-5 ${i % 2 ? "sm:order-1 sm:col-start-1" : ""}`}>
                   <Scene />
@@ -609,6 +670,7 @@ function Steps() {
               />
               <img
                 src={PASSPORT_PHOTO}
+                srcSet="/media/passport-card-480.webp 480w, /media/passport-card.webp 720w"
                 alt="Паспорт и карта Visa: проверка документов и KYC"
                 width={640}
                 height={640}
@@ -649,14 +711,14 @@ function Steps() {
                   <p className="display mt-3 text-[8vw] leading-none sm:text-[3.4vw] lg:text-[2.6vw]">
                     {s.t}
                   </p>
-                  <p className="mt-3 text-sm text-white/55">{s.d}</p>
+                  <p className="mt-3 text-sm text-white/75">{s.d}</p>
                 </Reveal>
               ))}
             </ol>
           </div>
         </div>
 
-        <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
+        <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/60">
           Оформление обычно занимает до одного дня.
         </p>
       </div>
@@ -685,6 +747,7 @@ function Pricing() {
           />
           <img
             src={CARD_PAIR_PHOTO}
+            srcSet="/media/formats-two-cards-600.webp 600w, /media/formats-two-cards-900.webp 900w, /media/formats-two-cards.webp 1100w"
             alt="Виртуальная и физическая карты Visa рядом на пьедестале"
             width={1100}
             height={1118}
@@ -734,7 +797,7 @@ function Pricing() {
             <p className="display price-emboss mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
               11 990 ₽
             </p>
-            <ul className="mt-10 space-y-3 text-sm text-white/65">
+            <ul className="mt-10 space-y-3 text-sm text-white/80">
               <li>Виртуальная Visa для онлайн-платежей</li>
               <li>Подключение к кошельку телефона</li>
               <li>Сопровождение до первой операции</li>
@@ -777,8 +840,7 @@ function Pricing() {
             >
               14 990 ₽
             </p>
-            <p className="mt-2 text-sm opacity-60">+ доставка</p>
-            <ul className="mt-10 space-y-3 text-sm opacity-70">
+            <ul className="mt-10 space-y-3 text-sm opacity-85">
               <li>Виртуальная и пластиковая Visa</li>
               <li>Офлайн-платежи и снятие наличных</li>
               <li>Сопровождение до активации пластика</li>
@@ -893,11 +955,11 @@ function Contact() {
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-3">
-            <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
+            <p className="text-sm tracking-[0.08em] text-white/85">{EMAIL}</p>
             <button
               type="button"
               onClick={copy}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/85 uppercase transition-colors hover:bg-white/10"
             >
               {copied ? (
                 <Check className="size-4" aria-hidden="true" />
@@ -924,6 +986,7 @@ function Contact() {
         />
         <img
           src={CLOSING_CARD_PHOTO}
+          srcSet="/media/closing-glass-card-720.webp 720w, /media/closing-glass-card-1080.webp 1080w, /media/closing-glass-card.webp 1300w"
           alt="Стеклянная карта HolyPlastic с переливающимся свечением — финальный образ бренда"
           width={1300}
           height={867}
@@ -951,7 +1014,7 @@ function Footer() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-[0.68rem] font-semibold tracking-[0.22em] text-white/50 uppercase hover:text-white"
+                className="text-[0.68rem] font-semibold tracking-[0.22em] text-white/75 uppercase hover:text-white"
               >
                 {n.label}
               </a>
@@ -960,14 +1023,14 @@ function Footer() {
 
           <div className="flex flex-col gap-3 text-sm">
             <TgLink
-              className="inline-flex min-h-[44px] items-center gap-2 text-white/80 hover:text-white"
+              className="inline-flex min-h-[44px] items-center gap-2 text-white/85 hover:text-white"
               message={MSG_GENERAL}
             >
               <Send className="size-4" aria-hidden="true" /> @holy_plastic
             </TgLink>
             <a
               href={MAILTO}
-              className="inline-flex min-h-[44px] items-center gap-2 text-white/80 hover:text-white"
+              className="inline-flex min-h-[44px] items-center gap-2 text-white/85 hover:text-white"
             >
               <Mail className="size-4" aria-hidden="true" /> {EMAIL}
             </a>
@@ -976,12 +1039,12 @@ function Footer() {
 
         <div className="hairline my-10 text-white" />
 
-        <p className="max-w-4xl text-xs leading-relaxed text-white/35">
+        <p className="max-w-4xl text-xs leading-relaxed text-white/60">
           HolyPlastic — консультационное сопровождение оформления карты. Мы не являемся банком,
           эмитентом или платёжной системой и не выпускаем карты. Условия обслуживания и доступность
           сервисов определяются банком и могут изменяться.
         </p>
-        <p className="mt-6 text-xs text-white/25">© {new Date().getFullYear()} HolyPlastic</p>
+        <p className="mt-6 text-xs text-white/60">© {new Date().getFullYear()} HolyPlastic</p>
       </div>
     </footer>
   );
