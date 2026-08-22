@@ -17,6 +17,7 @@ import { CardArt } from "@/components/site/CardArt";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
+import { SceneWallet, SceneRoutes, SceneFormats } from "@/components/site/FeatureScene";
 
 const TELEGRAM = "https://t.me/holy_plastic";
 const EMAIL = "holyplastic@yandex.com";
@@ -352,56 +353,66 @@ const FEATURES = [
     word: "Apple Pay",
     text: "Добавьте карту в кошелёк телефона и платите офлайн и онлайн, где принимают Visa.",
     sub: "Международные сервисы и покупки — подписки, магазины, поездки.",
+    Scene: SceneWallet,
   },
   {
     n: "02",
     word: "Переводы",
     text: "Доступные переводы из Европы и США по реквизитам счёта.",
     sub: "Есть вариант пополнения через криптовалютный маршрут — условия и доступность определяют провайдеры и правила банка.",
+    Scene: SceneRoutes,
   },
   {
     n: "03",
     word: "Virtual / Physical",
     text: "Виртуальная Visa сразу или пластик с доставкой — выбираете формат.",
     sub: "Личное сопровождение от первого сообщения до активации.",
+    Scene: SceneFormats,
   },
 ];
 
 function Features() {
   return (
     <section id="features" className="relative overflow-hidden py-24 sm:py-32">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 text-white opacity-40"
-      >
-        <div className="grid-lines absolute inset-0" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <div className="grid-lines absolute inset-0 opacity-40" />
+        <div
+          className="absolute top-1/3 left-[-15%] h-[60vw] w-[60vw] rounded-full opacity-25 blur-[130px]"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--violet) 60%, transparent), transparent 65%)",
+          }}
+        />
+        <div className="chrome-arc absolute top-[10%] right-[-30%] aspect-square w-[80vw] max-w-[900px] opacity-30" />
       </div>
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Возможности</h2>
         </Reveal>
 
-        <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-40">
-          {FEATURES.map((f, i) => (
-            <Reveal
-              key={f.n}
-              variant="blur"
-              className={`grid gap-6 sm:grid-cols-12 sm:items-end ${i % 2 ? "sm:text-right" : ""}`}
-            >
-              <span
-                className={`kicker text-white sm:col-span-2 ${i % 2 ? "sm:order-3 sm:text-right" : ""}`}
+        <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-36">
+          {FEATURES.map((f, i) => {
+            const Scene = f.Scene;
+            return (
+              <Reveal
+                key={f.n}
+                variant="blur"
+                className="grid items-center gap-8 sm:grid-cols-12 sm:gap-10"
               >
-                {f.n}
-              </span>
-              <div className={`sm:col-span-6 ${i % 2 ? "sm:order-2 sm:col-start-4" : ""}`}>
-                <p className="display h-sub leading-[0.95]">{f.word}</p>
-              </div>
-              <div className={`sm:col-span-4 ${i % 2 ? "sm:order-1" : ""}`}>
-                <p className="text-sm leading-relaxed text-white/70">{f.text}</p>
-                <p className="mt-3 text-xs leading-relaxed text-white/40">{f.sub}</p>
-              </div>
-            </Reveal>
-          ))}
+                <div
+                  className={`relative z-10 sm:col-span-7 ${i % 2 ? "sm:order-2 sm:col-start-6" : ""}`}
+                >
+                  <span className="kicker text-white">{f.n}</span>
+                  <p className="display h-sub mt-4 leading-[0.95]">{f.word}</p>
+                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">{f.text}</p>
+                  <p className="mt-3 max-w-md text-xs leading-relaxed text-white/40">{f.sub}</p>
+                </div>
+                <div className={`sm:col-span-5 ${i % 2 ? "sm:order-1 sm:col-start-1" : ""}`}>
+                  <Scene />
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
