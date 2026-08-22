@@ -6,6 +6,7 @@ import {
   SiBookingdotcom,
   SiApple,
   SiGoogleplay,
+  SiGooglepay,
   SiNetflix,
   SiSpotify,
   SiSteam,
@@ -13,6 +14,9 @@ import {
 } from "react-icons/si";
 import { Copy, Check, ArrowUpRight, Send, Mail } from "lucide-react";
 
+import heroWave from "@/assets/hero-chrome-wave.webp.asset.json";
+import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
+import kycPhoto from "@/assets/kyc-portal.webp.asset.json";
 import { CardArt } from "@/components/site/CardArt";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
@@ -49,13 +53,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay и Google Pay, международные сервисы, доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
       },
       { property: "og:title", content: "HolyPlastic — Visa без границ" },
       {
         property: "og:description",
         content:
-          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay и Google Pay, международные сервисы, доступные переводы.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -284,6 +288,19 @@ function Hero() {
           className="chrome-arc absolute top-[42%] left-1/2 aspect-square w-[70vw] max-w-[900px] -translate-x-1/2 opacity-25"
           style={motion ? p(-0.04) : undefined}
         />
+        <img
+          src={heroWave.url}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-x-0 top-[8%] h-[70%] w-full object-cover opacity-55 mix-blend-screen"
+          style={{
+            maskImage:
+              "radial-gradient(80% 70% at 50% 45%, black 30%, transparent 78%)",
+            ...(motion ? p(0.05) : {}),
+          }}
+        />
         <TopoLines className="inset-x-0 bottom-0 h-[38%] w-full" opacity={0.22} />
         <div style={motion ? p(0.12) : undefined}>
           <GlassFragment className="top-[26%] left-[4%] size-24 sm:size-36" rotate={-14} />
@@ -329,7 +346,7 @@ function Hero() {
         <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,560px)_1fr]">
           <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
-            Apple&nbsp;Pay и доступных переводов.
+            Apple&nbsp;Pay, Google&nbsp;Pay и доступных переводов.
           </p>
 
           <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
@@ -339,6 +356,8 @@ function Hero() {
           <div className="order-3 flex flex-col items-start gap-5 lg:items-end">
             <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/55 uppercase">
               <SiApple aria-hidden="true" /> Apple Pay
+              <span aria-hidden="true" className="opacity-40">/</span>
+              <SiGooglepay aria-hidden="true" className="text-[1.6em]" /> Google Pay
             </span>
             <TgLink
               className={btnLight}
@@ -374,6 +393,15 @@ function Services() {
           }}
         />
         <ScanBeam className="inset-y-[30%] opacity-45" />
+        <img
+          src={cryptoPhoto.url}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="absolute top-1/2 left-[-6%] hidden aspect-square w-[26vw] max-w-[320px] -translate-y-1/2 object-cover opacity-30 mix-blend-screen lg:block"
+          style={{ maskImage: "radial-gradient(58% 58% at 50% 50%, black 28%, transparent 74%)" }}
+        />
       </div>
       <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
         <h2 className="display h-section leading-none">Платите глобально</h2>
@@ -387,7 +415,7 @@ function Services() {
 const FEATURES = [
   {
     n: "01",
-    word: "Apple Pay",
+    word: "Apple Pay + Google Pay",
     text: "Добавьте карту в кошелёк телефона и платите офлайн и онлайн, где принимают Visa.",
     sub: "Международные сервисы и покупки — подписки, магазины, поездки.",
     Scene: SceneWallet,
@@ -534,6 +562,15 @@ function Steps() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
         <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
+        <img
+          src={kycPhoto.url}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="absolute top-[6%] right-[-8%] hidden aspect-square w-[38vw] max-w-[420px] object-cover opacity-35 mix-blend-screen lg:block"
+          style={{ maskImage: "radial-gradient(60% 60% at 50% 50%, black 30%, transparent 76%)" }}
+        />
       </div>
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">

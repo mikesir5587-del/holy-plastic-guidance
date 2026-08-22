@@ -5,6 +5,9 @@
 
 import type { ReactNode } from "react";
 import { GlassFragment, ScanBeam } from "@/components/site/Decor";
+import walletPhoto from "@/assets/wallet-phone-card.webp.asset.json";
+import globePhoto from "@/assets/glass-globe.webp.asset.json";
+import sculpturePhoto from "@/assets/chrome-sculpture.webp.asset.json";
 
 const stroke = "currentColor";
 
@@ -16,10 +19,14 @@ function Installation({
   children,
   shape,
   glow,
+  photo,
+  photoClass = "",
 }: {
   children: ReactNode;
   shape: "arch" | "split" | "stack";
   glow: string;
+  photo?: { url: string };
+  photoClass?: string;
 }) {
   const radius =
     shape === "arch"
@@ -27,6 +34,7 @@ function Installation({
       : shape === "split"
         ? "rounded-[1.75rem_5.5rem_1.75rem_5.5rem]"
         : "rounded-[1.75rem]";
+
 
   return (
     <div className={`relative w-full max-w-full ${shape === "stack" ? "pt-6 pl-5" : ""}`}>
@@ -42,6 +50,22 @@ function Installation({
       >
         <div className="grid-lines absolute inset-0 opacity-40" />
         <ScanBeam className="opacity-40" />
+
+        {photo ? (
+          <img
+            src={photo.url}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen ${photoClass}`}
+            style={{
+              maskImage:
+                "radial-gradient(72% 72% at 50% 46%, black 40%, transparent 78%)",
+            }}
+          />
+        ) : null}
+
 
         <svg
           viewBox="0 0 320 240"
@@ -82,6 +106,9 @@ export function SceneWallet() {
   return (
     <Installation
       shape="arch"
+      photo={walletPhoto}
+      photoClass="opacity-55"
+
       glow="radial-gradient(70% 60% at 30% 18%, color-mix(in oklab, var(--cyan) 24%, transparent), transparent 62%), radial-gradient(70% 60% at 82% 92%, color-mix(in oklab, var(--magenta) 20%, transparent), transparent 64%)"
     >
       <g opacity="0.75" stroke={stroke} fill="none">
@@ -140,6 +167,9 @@ export function SceneRoutes() {
   return (
     <Installation
       shape="split"
+      photo={globePhoto}
+      photoClass="opacity-45"
+
       glow="radial-gradient(60% 60% at 20% 30%, color-mix(in oklab, var(--violet) 22%, transparent), transparent 62%), radial-gradient(60% 60% at 85% 78%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 64%)"
     >
       <g stroke={stroke} fill="none" opacity="0.4" strokeWidth="0.7">
@@ -193,6 +223,9 @@ export function SceneFormats() {
   return (
     <Installation
       shape="stack"
+      photo={sculpturePhoto}
+      photoClass="opacity-45"
+
       glow="radial-gradient(70% 60% at 74% 22%, color-mix(in oklab, var(--magenta) 20%, transparent), transparent 62%), radial-gradient(70% 60% at 24% 88%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 64%)"
     >
       <g stroke={stroke} fill="none" opacity="0.3" strokeWidth="0.9">

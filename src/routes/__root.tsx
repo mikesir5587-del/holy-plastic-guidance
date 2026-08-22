@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы и доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay и Google Pay, международные сервисы и доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
       },
       { property: "og:site_name", content: "HolyPlastic" },
       { property: "og:type", content: "website" },
