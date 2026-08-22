@@ -529,23 +529,41 @@ const STEPS = [
 
 function Steps() {
   return (
-    <section id="steps" className="py-24 sm:py-36">
+    <section id="steps" className="relative overflow-hidden py-24 sm:py-36">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
+        <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
+      </div>
+
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">4 шага</h2>
         </Reveal>
 
         <div className="relative mt-16 sm:mt-24">
+          {/* glass rail: vertical on mobile, horizontal from sm */}
           <div
             aria-hidden="true"
-            className="hairline absolute top-6 right-0 left-0 hidden text-white sm:block"
-          />
+            className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15 sm:top-6 sm:right-0 sm:bottom-auto sm:left-0 sm:h-px sm:w-auto"
+          >
+            <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent sm:hidden" />
+            <span className="rail-pulse-x absolute inset-y-0 hidden w-40 bg-gradient-to-r from-transparent via-white to-transparent sm:block" />
+          </div>
+
           <ol className="grid gap-12 sm:grid-cols-4 sm:gap-8">
             {STEPS.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 90} className="relative sm:pt-14">
+              <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8 sm:pt-14 sm:pl-0">
                 <span
                   aria-hidden="true"
-                  className="absolute top-[18px] left-0 hidden size-3 rounded-full bg-white sm:block"
+                  className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)] sm:top-[17px]"
+                  style={{
+                    boxShadow:
+                      "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                  }}
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white sm:top-[22px]"
                 />
                 <span className="kicker text-white">{s.n}</span>
                 <p className="display mt-3 text-[8vw] leading-none sm:text-[2.4vw]">{s.t}</p>
@@ -556,13 +574,13 @@ function Steps() {
         </div>
 
         <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
-          Оформление обычно занимает до одного дня. Доставка физической пластиковой карты может
-          занимать больше одного дня.
+          Оформление обычно занимает до одного дня.
         </p>
       </div>
     </section>
   );
 }
+
 
 function Pricing() {
   return (
