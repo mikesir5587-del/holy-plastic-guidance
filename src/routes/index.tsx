@@ -29,7 +29,7 @@ import {
 
 
 const TELEGRAM = "https://t.me/holy_plastic";
-const EMAIL = "holyplastic@yandex.com";
+const EMAIL = "holyyplastic@gmail.com";
 const HERO_WAVE = "/media/hero-chrome-wave.webp";
 const CRYPTO_PHOTO = "/media/crypto-flow.webp";
 const PASSPORT_PHOTO = "/media/passport-card.webp";
