@@ -664,7 +664,7 @@ function Pricing() {
             loading="lazy"
             decoding="async"
             sizes="(min-width: 640px) 30vw, 62vw"
-            className="pointer-events-none absolute right-[-10%] bottom-[2%] aspect-square w-[62vw] max-w-[360px] object-cover opacity-40 mix-blend-screen sm:right-[4%] sm:bottom-[8%] sm:w-[30vw]"
+            className="pointer-events-none absolute right-[-10%] bottom-[2%] aspect-square w-[62vw] max-w-[360px] object-cover opacity-60 mix-blend-screen sm:right-[4%] sm:bottom-[8%] sm:w-[30vw]"
             style={{ maskImage: "radial-gradient(62% 62% at 50% 50%, black 30%, transparent 76%)" }}
           />
           <span
