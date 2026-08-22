@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroCard from "@/assets/hero-liquid-card.webp.asset.json";
+import heroCard from "@/assets/chrome-sculpture.webp.asset.json";
 
 /**
  * Hero 3D object: the liquid-chrome Visa render is the single hero subject.
