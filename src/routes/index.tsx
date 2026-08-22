@@ -189,6 +189,8 @@ const btnGhost =
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -197,9 +199,31 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Escape closes the mobile menu, focus returns to the toggle, body scroll unlocks.
+  useEffect(() => {
+    if (!open) {
+      document.body.style.removeProperty("overflow");
+      return;
+    }
+    document.body.style.overflow = "hidden";
+    const first = menuRef.current?.querySelector<HTMLElement>("a, button");
+    first?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.removeProperty("overflow");
+    };
+  }, [open]);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`safe-top fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
           ? "border-b border-white/10 bg-[color:var(--ink)]/80 backdrop-blur-xl"
           : "border-b border-transparent"
@@ -210,24 +234,30 @@ function Header() {
           scrolled ? "h-[74px]" : "h-24 sm:h-28"
         }`}
       >
-        <a href="#top" aria-label="HolyPlastic — в начало" className="flex min-w-0 items-center">
+        <a
+          href="#top"
+          aria-label="HolyPlastic — в начало"
+          className="flex min-h-11 min-w-0 items-center"
+        >
           <Logo
             priority
+            sizes="(min-width: 640px) 260px, 200px"
             className={`transition-all duration-500 ${scrolled ? "h-11 sm:h-12" : "h-14 sm:h-16"}`}
           />
         </a>
 
-        <nav aria-label="Основная навигация" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Основная навигация" className="hidden items-center gap-6 lg:flex">
           {NAV.map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="text-[0.68rem] font-semibold tracking-[0.24em] text-white/75 uppercase transition-colors hover:text-white"
+              className="inline-flex min-h-11 items-center px-1 text-[0.68rem] font-semibold tracking-[0.24em] text-white/75 uppercase transition-colors hover:text-white"
             >
               {n.label}
             </a>
           ))}
         </nav>
+
 
         <div className="flex shrink-0 items-center gap-3">
           <span className="hidden sm:block">
