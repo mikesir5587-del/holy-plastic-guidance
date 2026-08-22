@@ -385,7 +385,10 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="relative overflow-hidden border-y border-white/10 py-14 sm:py-20">
+    <section
+      id="services"
+      className="relative overflow-hidden border-y border-white/10 py-16 sm:py-24"
+    >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div
           className="absolute inset-x-0 top-1/2 h-[70%] -translate-y-1/2"
@@ -395,24 +398,64 @@ function Services() {
             backdropFilter: "blur(2px)",
           }}
         />
-        <ScanBeam className="inset-y-[30%] opacity-45" />
-        <img
-          src={cryptoPhoto.url}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          className="absolute top-1/2 left-[-6%] hidden aspect-square w-[26vw] max-w-[320px] -translate-y-1/2 object-cover opacity-30 mix-blend-screen lg:block"
-          style={{ maskImage: "radial-gradient(58% 58% at 50% 50%, black 28%, transparent 74%)" }}
-        />
+        <ScanBeam className="inset-y-[30%] opacity-30" />
       </div>
-      <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
-        <h2 className="display h-section leading-none">Платите глобально</h2>
+
+      <div className="mx-auto mb-12 grid w-full max-w-[1400px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)]">
+        <div>
+          <h2 className="display h-section leading-none">Платите глобально</h2>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
+            Подписки, магазины и поездки по всему миру. Пополнение — банковским переводом или через
+            криптовалютный маршрут.
+          </p>
+        </div>
+
+        <Reveal variant="blur" className="relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] opacity-70 blur-2xl"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 45% 40%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 70%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.5rem]"
+            style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={cryptoPhoto.url}
+              alt="Пополнение карты через криптовалютный маршрут"
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 1024px) 40vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
+              style={{
+                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -60px 90px -70px color-mix(in oklab, var(--violet) 90%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Пополнение
+            </figcaption>
+          </figure>
+        </Reveal>
       </div>
       <Marquee rowA={ROW_A} rowB={ROW_B} />
     </section>
   );
 }
+
 
 
 const FEATURES = [
