@@ -73,6 +73,7 @@ export function SceneRoutes() {
 export function SceneFormats() {
   return (
     <Artwork
+      cutout
       phase={-8}
       photo={CARD_PAIR_PHOTO}
       alt="Виртуальная и физическая карты Visa на стеклянном пьедестале"
