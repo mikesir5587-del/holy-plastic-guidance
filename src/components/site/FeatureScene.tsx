@@ -223,6 +223,9 @@ export function SceneFormats() {
   return (
     <Installation
       shape="stack"
+      photo={cryptoPhoto}
+      photoClass="opacity-40"
+
       glow="radial-gradient(70% 60% at 74% 22%, color-mix(in oklab, var(--magenta) 20%, transparent), transparent 62%), radial-gradient(70% 60% at 24% 88%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 64%)"
     >
       <g stroke={stroke} fill="none" opacity="0.3" strokeWidth="0.9">
