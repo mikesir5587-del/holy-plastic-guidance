@@ -17,6 +17,7 @@ import { CardArt } from "@/components/site/CardArt";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
+import { SceneWallet, SceneRoutes, SceneFormats } from "@/components/site/FeatureScene";
 
 const TELEGRAM = "https://t.me/holy_plastic";
 const EMAIL = "holyplastic@yandex.com";
@@ -26,10 +27,11 @@ const MSG_GENERAL =
 const MSG_VIRTUAL = "Здравствуйте! Расскажите, пожалуйста, подробнее о виртуальной карте 💰";
 const MSG_PHYSICAL = "Здравствуйте! Расскажите, пожалуйста, подробнее о физической карте 💰";
 
-const MAILTO = `mailto:${EMAIL}?${new URLSearchParams({
-  subject: "Консультация HolyPlastic",
-  body: "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления.",
-}).toString()}`;
+const MAIL_SUBJECT = encodeURIComponent("Консультация HolyPlastic");
+const MAIL_BODY = encodeURIComponent(
+  "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления.",
+);
+const MAILTO = `mailto:${EMAIL}?subject=${MAIL_SUBJECT}&body=${MAIL_BODY}`;
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -39,7 +41,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 12 000 ₽, Physical 15 000 ₽.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
       },
       { property: "og:title", content: "HolyPlastic — Visa без границ" },
       {
@@ -351,56 +353,66 @@ const FEATURES = [
     word: "Apple Pay",
     text: "Добавьте карту в кошелёк телефона и платите офлайн и онлайн, где принимают Visa.",
     sub: "Международные сервисы и покупки — подписки, магазины, поездки.",
+    Scene: SceneWallet,
   },
   {
     n: "02",
     word: "Переводы",
     text: "Доступные переводы из Европы и США по реквизитам счёта.",
     sub: "Есть вариант пополнения через криптовалютный маршрут — условия и доступность определяют провайдеры и правила банка.",
+    Scene: SceneRoutes,
   },
   {
     n: "03",
     word: "Virtual / Physical",
     text: "Виртуальная Visa сразу или пластик с доставкой — выбираете формат.",
     sub: "Личное сопровождение от первого сообщения до активации.",
+    Scene: SceneFormats,
   },
 ];
 
 function Features() {
   return (
     <section id="features" className="relative overflow-hidden py-24 sm:py-32">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 text-white opacity-40"
-      >
-        <div className="grid-lines absolute inset-0" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <div className="grid-lines absolute inset-0 opacity-40" />
+        <div
+          className="absolute top-1/3 left-[-15%] h-[60vw] w-[60vw] rounded-full opacity-25 blur-[130px]"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--violet) 60%, transparent), transparent 65%)",
+          }}
+        />
+        <div className="chrome-arc absolute top-[10%] right-[-30%] aspect-square w-[80vw] max-w-[900px] opacity-30" />
       </div>
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Возможности</h2>
         </Reveal>
 
-        <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-40">
-          {FEATURES.map((f, i) => (
-            <Reveal
-              key={f.n}
-              variant="blur"
-              className={`grid gap-6 sm:grid-cols-12 sm:items-end ${i % 2 ? "sm:text-right" : ""}`}
-            >
-              <span
-                className={`kicker text-white sm:col-span-2 ${i % 2 ? "sm:order-3 sm:text-right" : ""}`}
+        <div className="mt-16 flex flex-col gap-24 sm:mt-24 sm:gap-36">
+          {FEATURES.map((f, i) => {
+            const Scene = f.Scene;
+            return (
+              <Reveal
+                key={f.n}
+                variant="blur"
+                className="grid items-center gap-8 sm:grid-cols-12 sm:gap-10"
               >
-                {f.n}
-              </span>
-              <div className={`sm:col-span-6 ${i % 2 ? "sm:order-2 sm:col-start-4" : ""}`}>
-                <p className="display h-sub leading-[0.95]">{f.word}</p>
-              </div>
-              <div className={`sm:col-span-4 ${i % 2 ? "sm:order-1" : ""}`}>
-                <p className="text-sm leading-relaxed text-white/70">{f.text}</p>
-                <p className="mt-3 text-xs leading-relaxed text-white/40">{f.sub}</p>
-              </div>
-            </Reveal>
-          ))}
+                <div
+                  className={`relative z-10 sm:col-span-7 ${i % 2 ? "sm:order-2 sm:col-start-6" : ""}`}
+                >
+                  <span className="kicker text-white">{f.n}</span>
+                  <p className="display h-sub mt-4 leading-[0.95]">{f.word}</p>
+                  <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">{f.text}</p>
+                  <p className="mt-3 max-w-md text-xs leading-relaxed text-white/40">{f.sub}</p>
+                </div>
+                <div className={`sm:col-span-5 ${i % 2 ? "sm:order-1 sm:col-start-1" : ""}`}>
+                  <Scene />
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -436,12 +448,6 @@ function Security() {
           </ol>
         </Reveal>
 
-        <Reveal delay={200}>
-          <div className="hairline mt-16 text-[color:var(--ink)]" />
-          <p className="mt-8 max-w-xl text-base opacity-60">
-            Работаем только с достоверными данными и в рамках правил банка.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
@@ -509,7 +515,7 @@ function Pricing() {
           <div>
             <p className="kicker text-white">Virtual</p>
             <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
-              12 000 ₽
+              11 990 ₽
             </p>
             <ul className="mt-10 space-y-3 text-sm text-white/65">
               <li>Виртуальная Visa для онлайн-платежей</li>
@@ -535,7 +541,7 @@ function Pricing() {
           <div>
             <p className="kicker text-[color:var(--ink)]">Physical</p>
             <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
-              15 000 ₽
+              14 990 ₽
             </p>
             <p className="mt-2 text-sm opacity-60">+ доставка</p>
             <ul className="mt-10 space-y-3 text-sm opacity-70">
@@ -641,9 +647,6 @@ function Contact() {
             )}
             {copied ? "Скопировано" : "Скопировать почту"}
           </button>
-          <p className="max-w-xs text-xs text-white/35">
-            Если почтовое приложение не открывается — адрес можно скопировать.
-          </p>
           <span aria-live="polite" className="sr-only">
             {copied ? "Адрес скопирован" : ""}
           </span>
