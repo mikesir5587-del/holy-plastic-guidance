@@ -11,12 +11,14 @@ const CARD_PAIR_PHOTO = "/media/formats-two-cards.webp";
 function Artwork({
   glow,
   photo,
+  srcSet,
   alt,
   phase,
   cutout = false,
 }: {
   glow: string;
   photo: string;
+  srcSet: string;
   alt: string;
   phase: number;
   cutout?: boolean;
@@ -31,6 +33,7 @@ function Artwork({
 
       <img
         src={photo}
+        srcSet={srcSet}
         alt={alt}
         loading="lazy"
         decoding="async"
@@ -53,6 +56,7 @@ export function SceneWallet() {
     <Artwork
       phase={0}
       photo={WALLET_PHOTO}
+      srcSet="/media/wallet-phone-card-480.webp 480w, /media/wallet-phone-card-720.webp 720w, /media/wallet-phone-card.webp 800w"
       alt="Смартфон с добавленной картой Visa и бесконтактной оплатой"
       glow="radial-gradient(50% 50% at 40% 35%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 72%), radial-gradient(40% 40% at 70% 70%, color-mix(in oklab, var(--cyan) 26%, transparent), transparent 72%)"
     />
@@ -64,6 +68,7 @@ export function SceneRoutes() {
     <Artwork
       phase={-4}
       photo={GLOBE_PHOTO}
+      srcSet="/media/glass-globe-480.webp 480w, /media/glass-globe.webp 720w"
       alt="Стеклянный глобус с маршрутом международного перевода"
       glow="radial-gradient(50% 50% at 60% 40%, color-mix(in oklab, var(--cyan) 42%, transparent), transparent 72%), radial-gradient(40% 40% at 30% 70%, color-mix(in oklab, var(--violet) 26%, transparent), transparent 72%)"
     />
@@ -76,6 +81,7 @@ export function SceneFormats() {
       cutout
       phase={-8}
       photo={CARD_PAIR_PHOTO}
+      srcSet="/media/formats-two-cards-600.webp 600w, /media/formats-two-cards-900.webp 900w, /media/formats-two-cards.webp 1100w"
       alt="Виртуальная и физическая карты Visa на стеклянном пьедестале"
       glow="radial-gradient(50% 50% at 50% 60%, color-mix(in oklab, var(--magenta) 42%, transparent), transparent 72%), radial-gradient(40% 40% at 30% 35%, color-mix(in oklab, var(--cyan) 24%, transparent), transparent 72%)"
     />
