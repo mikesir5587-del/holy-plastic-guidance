@@ -3,19 +3,11 @@ import { Pause, Play } from "lucide-react";
 
 export type MarqueeItem = { name: string; icon: ReactNode };
 
-function Row({
-  items,
-  reverse,
-  paused,
-}: {
-  items: MarqueeItem[];
-  reverse?: boolean;
-  paused: boolean;
-}) {
+function Row({ items, reverse }: { items: MarqueeItem[]; reverse?: boolean }) {
   const track = reverse ? "marquee-track-rev" : "marquee-track";
   return (
     <div className="marquee-mask overflow-hidden" aria-hidden="true">
-      <ul className={track} style={{ animationPlayState: paused ? "paused" : "running" }}>
+      <ul className={track}>
         {[0, 1].map((copy) => (
           <li key={copy} className="flex shrink-0">
             <ul className="flex shrink-0 items-center">
@@ -72,7 +64,7 @@ export function Marquee({ rowA, rowB }: { rowA: MarqueeItem[]; rowB: MarqueeItem
   const names = [...rowA, ...rowB].map((i) => i.name);
 
   return (
-    <div className="marquee-hold relative">
+    <div className="marquee-hold relative" data-paused={paused ? "true" : "false"}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 inset-y-2 rounded-3xl border border-white/8"
@@ -86,9 +78,9 @@ export function Marquee({ rowA, rowB }: { rowA: MarqueeItem[]; rowB: MarqueeItem
         <p className="sr-only">
           Сервисы, которыми можно пользоваться с картой: {names.join(", ")}.
         </p>
-        <Row items={rowA} paused={paused} />
+        <Row items={rowA} />
         <Waveform />
-        <Row items={rowB} reverse paused={paused} />
+        <Row items={rowB} reverse />
       </div>
 
       <div className="mt-3 flex justify-center sm:justify-end sm:pr-4">
