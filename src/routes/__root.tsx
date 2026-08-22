@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ...(import.meta.env.PROD
         ? [
             {
-              "http-equiv": "Content-Security-Policy",
+              httpEquiv: "Content-Security-Policy",
               content:
                 "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; frame-src 'none'; worker-src 'self' blob:",
             },
