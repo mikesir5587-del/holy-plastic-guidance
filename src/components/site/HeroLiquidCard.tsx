@@ -120,12 +120,15 @@ export function HeroLiquidCard({ className = "" }: { className?: string }) {
         <div className={motion ? "hero-card-float" : undefined}>
           <img
             src={HERO_CARD}
+            srcSet="/media/hero-liquid-card-720.webp 720w, /media/hero-liquid-card-1080.webp 1080w, /media/hero-liquid-card.webp 1280w"
+            sizes="(min-width: 1024px) 46vw, 92vw"
             alt="Дебетовая Visa HolyPlastic в жидко-хромовой оболочке"
             width={900}
             height={600}
             fetchPriority="high"
             decoding="async"
             className="relative z-10 block w-full select-none"
+
             style={{
               filter: "drop-shadow(0 60px 80px rgba(0,0,0,0.75))",
               maskImage:
