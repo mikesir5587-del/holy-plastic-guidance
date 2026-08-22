@@ -106,6 +106,9 @@ export function SceneWallet() {
   return (
     <Installation
       shape="arch"
+      photo={walletPhoto}
+      photoClass="opacity-55"
+
       glow="radial-gradient(70% 60% at 30% 18%, color-mix(in oklab, var(--cyan) 24%, transparent), transparent 62%), radial-gradient(70% 60% at 82% 92%, color-mix(in oklab, var(--magenta) 20%, transparent), transparent 64%)"
     >
       <g opacity="0.75" stroke={stroke} fill="none">
