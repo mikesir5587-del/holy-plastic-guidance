@@ -128,9 +128,10 @@ export function HeroLiquidCard({ className = "" }: { className?: string }) {
             style={{
               filter: "drop-shadow(0 60px 80px rgba(0,0,0,0.75))",
               maskImage:
-                "radial-gradient(76% 78% at 50% 52%, black 52%, rgba(0,0,0,0.72) 74%, transparent 100%)",
+                "radial-gradient(62% 62% at 50% 54%, black 40%, rgba(0,0,0,0.55) 66%, transparent 92%)",
               WebkitMaskImage:
-                "radial-gradient(76% 78% at 50% 52%, black 52%, rgba(0,0,0,0.72) 74%, transparent 100%)",
+                "radial-gradient(62% 62% at 50% 54%, black 40%, rgba(0,0,0,0.55) 66%, transparent 92%)",
+
             }}
 
           />
