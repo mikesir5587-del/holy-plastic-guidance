@@ -500,7 +500,7 @@ function Security() {
                   }}
                 />
                 <span className="kicker relative text-[color:var(--ink)]">{item.n}</span>
-                <p className="relative mt-4 text-[1.3rem] leading-tight font-semibold text-balance sm:text-[1.7rem]">
+                <p className="relative mt-4 text-[1.15rem] leading-tight font-semibold break-words hyphens-auto text-pretty md:text-[1.35rem] lg:text-[1.7rem]">
                   {item.t}
                 </p>
                 <span
