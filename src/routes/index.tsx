@@ -898,40 +898,60 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-28 text-center sm:px-8"
+      className="grain relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-28 sm:px-8"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-60" />
         <div className="caustic absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-40" />
-        <SectionOrbits
-          className="top-[38%] left-1/2 aspect-square w-[150vw] max-w-[1150px] -translate-x-1/2 -translate-y-1/2"
-          rings={4}
-          nodes={3}
-          opacity={0.45}
-        />
         <div className="chrome-arc drift absolute bottom-[-30%] left-1/2 aspect-square w-[110vw] max-w-[1200px] -translate-x-1/2" />
         <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
-        <img
-          src={handsPhoto.url}
-          alt=""
-          aria-hidden="true"
-          width={720}
-          height={720}
-          loading="lazy"
-          decoding="async"
-          sizes="(min-width: 640px) 46vw, 88vw"
-          className="absolute top-[16%] left-1/2 aspect-square w-[88vw] max-w-[520px] -translate-x-1/2 object-cover opacity-30 mix-blend-screen sm:w-[46vw]"
-          style={{ maskImage: "radial-gradient(58% 62% at 50% 50%, black 26%, transparent 74%)" }}
-        />
-        <GlassFragment className="top-[22%] left-[8%] hidden size-28 sm:block" rotate={-20} />
-        <GlassFragment
-          className="right-[9%] bottom-[26%] hidden size-24 sm:block"
-          rotate={18}
-          delay={5}
-        />
       </div>
 
-      <Reveal className="relative z-10 flex flex-col items-center">
+      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <Reveal variant="blur" className="relative order-2 lg:order-1">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-6 -z-10 rounded-[4rem] opacity-70 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(55% 55% at 50% 50%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 72%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.75rem]"
+            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={handsPhoto.url}
+              alt="Стеклянные ладони, оберегающие карту Visa"
+              width={720}
+              height={720}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 1024px) 46vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
+              style={{
+                animationDelay: "-11s",
+                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--cyan) 80%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Сопровождение
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <Reveal className="relative z-10 order-1 flex flex-col items-start text-left lg:order-2">
+
         <span className="relative flex items-center justify-center">
           <span
             aria-hidden="true"
