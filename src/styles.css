@@ -309,6 +309,45 @@
   }
 }
 
+@keyframes hp-glare {
+  0%,
+  58% {
+    transform: translateX(-65%) rotate(0deg);
+    opacity: 0;
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(65%) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@utility glare {
+  background: linear-gradient(
+    104deg,
+    transparent 44%,
+    oklch(1 0 0 / 0.28) 49%,
+    oklch(1 0 0 / 0.4) 51%,
+    transparent 57%
+  );
+  mix-blend-mode: screen;
+  animation: hp-glare 11s ease-in-out infinite;
+}
+
+/* soft transition veil between scenes */
+@utility scene-fade-top {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 22vh;
+    pointer-events: none;
+    background: linear-gradient(to bottom, var(--ink), transparent);
+  }
+}
+
 @keyframes hp-scroll-dot {
   0% {
     transform: translateY(-6px);
