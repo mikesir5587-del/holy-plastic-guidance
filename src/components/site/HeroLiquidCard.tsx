@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import heroCard from "@/assets/hero-liquid-card.webp.asset.json";
+import heroCard from "@/assets/chrome-sculpture.webp.asset.json";
 
 /**
  * Hero 3D object: the liquid-chrome Visa render is the single hero subject.
@@ -120,21 +120,20 @@ export function HeroLiquidCard({ className = "" }: { className?: string }) {
           <img
             src={heroCard.url}
             alt="Дебетовая Visa HolyPlastic в жидко-хромовой оболочке"
-            width={1400}
-            height={933}
+            width={900}
+            height={600}
             fetchPriority="high"
             decoding="async"
             className="relative z-10 block w-full select-none"
             style={{
               filter: "drop-shadow(0 60px 80px rgba(0,0,0,0.75))",
               maskImage:
-                "radial-gradient(62% 62% at 50% 54%, black 40%, rgba(0,0,0,0.55) 66%, transparent 92%)",
+                "radial-gradient(66% 66% at 50% 52%, black 46%, rgba(0,0,0,0.6) 70%, transparent 94%)",
               WebkitMaskImage:
-                "radial-gradient(62% 62% at 50% 54%, black 40%, rgba(0,0,0,0.55) 66%, transparent 92%)",
-
+                "radial-gradient(66% 66% at 50% 52%, black 46%, rgba(0,0,0,0.6) 70%, transparent 94%)",
             }}
-
           />
+
           {/* moving caustic highlight across the chrome shell */}
           {motion ? (
             <span
