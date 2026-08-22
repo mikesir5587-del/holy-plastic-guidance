@@ -33,7 +33,6 @@ const EMAIL = "holyplastic@yandex.com";
 const HERO_WAVE = "/media/hero-chrome-wave.webp";
 const CRYPTO_PHOTO = "/media/crypto-flow.webp";
 const PASSPORT_PHOTO = "/media/passport-card.webp";
-const HANDS_PHOTO = "/media/guardian-hands.webp";
 const CARD_PAIR_PHOTO = "/media/card-pair.webp";
 
 const MSG_GENERAL =
