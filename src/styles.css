@@ -573,3 +573,96 @@
     0 -1px 0 color-mix(in oklab, black 45%, transparent),
     0 24px 50px color-mix(in oklab, black 45%, transparent);
 }
+
+/* --- hero 3D object --- */
+@keyframes hp-hero-orbit {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes hp-hero-bloom {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes hp-hero-hover {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: -0.6deg;
+  }
+  50% {
+    translate: 0 -18px;
+    rotate: 0.6deg;
+  }
+}
+
+@utility hero-card-float {
+  animation: hp-hero-hover 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hp-hero-glint {
+  0% {
+    transform: translateX(-60%) rotate(8deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.85;
+  }
+  55% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(70%) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@utility hero-card-glint {
+  background: linear-gradient(
+    100deg,
+    transparent 42%,
+    color-mix(in oklab, white 40%, transparent) 50%,
+    transparent 58%
+  );
+  mix-blend-mode: screen;
+  animation: hp-hero-glint 9s ease-in-out infinite;
+  mask-image: radial-gradient(70% 60% at 50% 50%, black 30%, transparent 82%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 50%, black 30%, transparent 82%);
+}
+
+/* --- scene photography --- */
+@keyframes hp-kenburns {
+  0%,
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.09) translate3d(0, -1.6%, 0);
+  }
+}
+
+@utility scene-kenburns {
+  animation: hp-kenburns 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-card-float,
+  .hero-card-glint,
+  .scene-kenburns {
+    animation: none !important;
+  }
+}

@@ -19,7 +19,7 @@ import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
 import passportPhoto from "@/assets/passport-card.webp.asset.json";
 import handsPhoto from "@/assets/guardian-hands.webp.asset.json";
 import cardPairPhoto from "@/assets/card-pair.webp.asset.json";
-import { CardArt } from "@/components/site/CardArt";
+import { HeroLiquidCard } from "@/components/site/HeroLiquidCard";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
@@ -345,17 +345,18 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 sm:px-8">
-        <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,560px)_1fr]">
-          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
+        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,860px)_minmax(0,1fr)] lg:gap-6">
+          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1 lg:mb-16">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
             Apple&nbsp;Pay, Google&nbsp;Pay и доступных переводов.
           </p>
 
-          <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
-            <CardArt className="mx-auto w-full max-w-[560px]" />
+          <div className="order-1 -mx-2 lg:order-2 lg:mx-0">
+            <HeroLiquidCard className="mx-auto w-full max-w-[860px] lg:w-[46vw] lg:min-w-[620px]" />
           </div>
 
-          <div className="order-3 flex flex-col items-start gap-5 lg:items-end">
+          <div className="order-3 flex flex-col items-start gap-5 lg:mb-16 lg:items-end">
+
             <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/55 uppercase">
               <SiApple aria-hidden="true" /> Apple Pay
               <span aria-hidden="true" className="opacity-40">/</span>
@@ -384,7 +385,10 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="relative overflow-hidden border-y border-white/10 py-14 sm:py-20">
+    <section
+      id="services"
+      className="relative overflow-hidden border-y border-white/10 py-16 sm:py-24"
+    >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div
           className="absolute inset-x-0 top-1/2 h-[70%] -translate-y-1/2"
@@ -394,24 +398,64 @@ function Services() {
             backdropFilter: "blur(2px)",
           }}
         />
-        <ScanBeam className="inset-y-[30%] opacity-45" />
-        <img
-          src={cryptoPhoto.url}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-          className="absolute top-1/2 left-[-6%] hidden aspect-square w-[26vw] max-w-[320px] -translate-y-1/2 object-cover opacity-30 mix-blend-screen lg:block"
-          style={{ maskImage: "radial-gradient(58% 58% at 50% 50%, black 28%, transparent 74%)" }}
-        />
+        <ScanBeam className="inset-y-[30%] opacity-30" />
       </div>
-      <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
-        <h2 className="display h-section leading-none">Платите глобально</h2>
+
+      <div className="mx-auto mb-12 grid w-full max-w-[1400px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)]">
+        <div>
+          <h2 className="display h-section leading-none">Платите глобально</h2>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
+            Подписки, магазины и поездки по всему миру. Пополнение — банковским переводом или через
+            криптовалютный маршрут.
+          </p>
+        </div>
+
+        <Reveal variant="blur" className="relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] opacity-70 blur-2xl"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 45% 40%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 70%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.5rem]"
+            style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={cryptoPhoto.url}
+              alt="Пополнение карты через криптовалютный маршрут"
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 1024px) 40vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
+              style={{
+                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -60px 90px -70px color-mix(in oklab, var(--violet) 90%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Пополнение
+            </figcaption>
+          </figure>
+        </Reveal>
       </div>
       <Marquee rowA={ROW_A} rowB={ROW_B} />
     </section>
   );
 }
+
 
 
 const FEATURES = [
@@ -562,20 +606,8 @@ function Steps() {
   return (
     <section id="steps" className="relative overflow-hidden py-24 sm:py-36">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
-        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
+        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.12} lines={6} />
         <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
-        <img
-          src={passportPhoto.url}
-          alt=""
-          aria-hidden="true"
-          width={640}
-          height={640}
-          loading="lazy"
-          decoding="async"
-          sizes="(min-width: 1024px) 38vw, 0px"
-          className="absolute top-[4%] right-[-6%] hidden aspect-square w-[36vw] max-w-[400px] object-cover opacity-40 mix-blend-screen lg:block"
-          style={{ maskImage: "radial-gradient(60% 60% at 50% 50%, black 30%, transparent 76%)" }}
-        />
       </div>
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
@@ -583,37 +615,84 @@ function Steps() {
           <h2 className="display h-section leading-none">4 шага</h2>
         </Reveal>
 
-        <div className="relative mt-16 sm:mt-24">
-          {/* glass rail: vertical on mobile, horizontal from sm */}
-          <div
-            aria-hidden="true"
-            className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15 sm:top-6 sm:right-0 sm:bottom-auto sm:left-0 sm:h-px sm:w-auto"
-          >
-            <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent sm:hidden" />
-            <span className="rail-pulse-x absolute inset-y-0 hidden w-40 bg-gradient-to-r from-transparent via-white to-transparent sm:block" />
-          </div>
-
-          <ol className="grid gap-12 sm:grid-cols-4 sm:gap-8">
-            {STEPS.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8 sm:pt-14 sm:pl-0">
-                <span
-                  aria-hidden="true"
-                  className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)] sm:top-[17px]"
+        <div className="mt-14 grid gap-12 sm:mt-20 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16">
+          <Reveal variant="blur" className="lg:sticky lg:top-28 lg:self-start">
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] opacity-70 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(60% 60% at 50% 45%, color-mix(in oklab, var(--violet) 48%, transparent), transparent 70%)",
+                }}
+              />
+              <figure
+                className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.5rem]"
+                style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
+              >
+                <img
+                  src={passportPhoto.url}
+                  alt="Паспорт и карта Visa: проверка документов и KYC"
+                  width={640}
+                  height={640}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 40vw, 92vw"
+                  className="scene-kenburns absolute inset-0 h-full w-full object-cover"
                   style={{
-                    boxShadow:
-                      "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                    animationDelay: "-6s",
+                    maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                    WebkitMaskImage:
+                      "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
                   }}
                 />
-                <span
+                <div
                   aria-hidden="true"
-                  className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white sm:top-[22px]"
+                  className="pointer-events-none absolute inset-0 rounded-[inherit]"
+                  style={{
+                    boxShadow:
+                      "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -60px 90px -70px color-mix(in oklab, var(--cyan) 80%, transparent)",
+                  }}
                 />
-                <span className="kicker text-white">{s.n}</span>
-                <p className="display mt-3 text-[8vw] leading-none sm:text-[2.4vw]">{s.t}</p>
-                <p className="mt-3 text-sm text-white/55">{s.d}</p>
-              </Reveal>
-            ))}
-          </ol>
+                <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+                  KYC
+                </figcaption>
+              </figure>
+            </div>
+          </Reveal>
+
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15"
+            >
+              <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent" />
+            </div>
+
+            <ol className="grid gap-12">
+              {STEPS.map((s, i) => (
+                <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)]"
+                    style={{
+                      boxShadow:
+                        "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                    }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white"
+                  />
+                  <span className="kicker text-white">{s.n}</span>
+                  <p className="display mt-3 text-[8vw] leading-none sm:text-[3.4vw] lg:text-[2.6vw]">
+                    {s.t}
+                  </p>
+                  <p className="mt-3 text-sm text-white/55">{s.d}</p>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
 
         <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
@@ -625,12 +704,55 @@ function Steps() {
 }
 
 
+
 function Pricing() {
   return (
     <section id="pricing" className="border-t border-white/10">
       <div className="mx-auto w-full max-w-[1400px] px-5 pt-24 sm:px-8 sm:pt-32">
         <Reveal>
           <h2 className="display h-section leading-none">Два формата</h2>
+        </Reveal>
+
+        <Reveal variant="blur" delay={80} className="relative mt-12 sm:mt-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-5 -z-10 rounded-[3.5rem] opacity-70 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(50% 70% at 50% 50%, color-mix(in oklab, var(--magenta) 40%, transparent), transparent 72%), radial-gradient(50% 70% at 20% 60%, color-mix(in oklab, var(--cyan) 34%, transparent), transparent 72%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] sm:aspect-[21/9]"
+            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={cardPairPhoto.url}
+              alt="Виртуальная и физическая карты Visa рядом на пьедестале"
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 640px) 92vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full scale-[1.35] object-cover object-[50%_38%] sm:scale-100"
+              style={{
+                animationDelay: "-14s",
+                maskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--violet) 90%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Virtual · Physical
+            </figcaption>
+          </figure>
         </Reveal>
       </div>
 
@@ -655,18 +777,7 @@ function Pricing() {
             opacity={0.25}
           />
           <GlassFragment className="top-[12%] right-[8%] size-20 sm:size-28" rotate={-18} />
-          <img
-            src={cardPairPhoto.url}
-            alt=""
-            aria-hidden="true"
-            width={640}
-            height={640}
-            loading="lazy"
-            decoding="async"
-            sizes="(min-width: 640px) 30vw, 62vw"
-            className="pointer-events-none absolute right-[-10%] bottom-[2%] aspect-square w-[62vw] max-w-[360px] object-cover opacity-60 mix-blend-screen sm:right-[4%] sm:bottom-[8%] sm:w-[30vw]"
-            style={{ maskImage: "radial-gradient(62% 62% at 50% 50%, black 30%, transparent 76%)" }}
-          />
+
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 right-0 hidden w-px lg:block"
@@ -787,40 +898,60 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="grain relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-28 text-center sm:px-8"
+      className="grain relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-28 sm:px-8"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-60" />
         <div className="caustic absolute bottom-[-20%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-40" />
-        <SectionOrbits
-          className="top-[38%] left-1/2 aspect-square w-[150vw] max-w-[1150px] -translate-x-1/2 -translate-y-1/2"
-          rings={4}
-          nodes={3}
-          opacity={0.45}
-        />
         <div className="chrome-arc drift absolute bottom-[-30%] left-1/2 aspect-square w-[110vw] max-w-[1200px] -translate-x-1/2" />
         <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
-        <img
-          src={handsPhoto.url}
-          alt=""
-          aria-hidden="true"
-          width={720}
-          height={720}
-          loading="lazy"
-          decoding="async"
-          sizes="(min-width: 640px) 46vw, 88vw"
-          className="absolute top-[16%] left-1/2 aspect-square w-[88vw] max-w-[520px] -translate-x-1/2 object-cover opacity-30 mix-blend-screen sm:w-[46vw]"
-          style={{ maskImage: "radial-gradient(58% 62% at 50% 50%, black 26%, transparent 74%)" }}
-        />
-        <GlassFragment className="top-[22%] left-[8%] hidden size-28 sm:block" rotate={-20} />
-        <GlassFragment
-          className="right-[9%] bottom-[26%] hidden size-24 sm:block"
-          rotate={18}
-          delay={5}
-        />
       </div>
 
-      <Reveal className="relative z-10 flex flex-col items-center">
+      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <Reveal variant="blur" className="relative order-2 lg:order-1">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-6 -z-10 rounded-[4rem] opacity-70 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(55% 55% at 50% 50%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 72%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.75rem]"
+            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={handsPhoto.url}
+              alt="Стеклянные ладони, оберегающие карту Visa"
+              width={720}
+              height={720}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 1024px) 46vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
+              style={{
+                animationDelay: "-11s",
+                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--cyan) 80%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Сопровождение
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <Reveal className="relative z-10 order-1 flex flex-col items-start text-left lg:order-2">
+
         <span className="relative flex items-center justify-center">
           <span
             aria-hidden="true"
@@ -839,35 +970,37 @@ function Contact() {
         <h2 className="display h-hero mt-10 leading-none">Начнём?</h2>
 
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
-            <Send className="size-4" aria-hidden="true" /> Написать в Telegram
-          </TgLink>
-          <a href={MAILTO} className={`${btnGhost} text-white`}>
-            <Mail className="size-4" aria-hidden="true" /> Написать письмо
-          </a>
-        </div>
+          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
+            <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
+              <Send className="size-4" aria-hidden="true" /> Написать в Telegram
+            </TgLink>
+            <a href={MAILTO} className={`${btnGhost} text-white`}>
+              <Mail className="size-4" aria-hidden="true" /> Написать письмо
+            </a>
+          </div>
 
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
-          <button
-            type="button"
-            onClick={copy}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
-          >
-            {copied ? (
-              <Check className="size-4" aria-hidden="true" />
-            ) : (
-              <Copy className="size-4" aria-hidden="true" />
-            )}
-            {copied ? "Скопировано" : "Скопировать почту"}
-          </button>
-          <span aria-live="polite" className="sr-only">
-            {copied ? "Адрес скопирован" : ""}
-          </span>
-        </div>
-      </Reveal>
+          <div className="mt-8 flex flex-col items-start gap-3">
+            <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
+            <button
+              type="button"
+              onClick={copy}
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
+            >
+              {copied ? (
+                <Check className="size-4" aria-hidden="true" />
+              ) : (
+                <Copy className="size-4" aria-hidden="true" />
+              )}
+              {copied ? "Скопировано" : "Скопировать почту"}
+            </button>
+            <span aria-live="polite" className="sr-only">
+              {copied ? "Адрес скопирован" : ""}
+            </span>
+          </div>
+        </Reveal>
+      </div>
     </section>
+
   );
 }
 
