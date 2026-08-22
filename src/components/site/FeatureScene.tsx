@@ -6,18 +6,20 @@
 
 const WALLET_PHOTO = "/media/wallet-phone-card.webp";
 const GLOBE_PHOTO = "/media/glass-globe.webp";
-const CARD_PAIR_PHOTO = "/media/card-pair.webp";
+const CARD_PAIR_PHOTO = "/media/formats-two-cards.webp";
 
 function Artwork({
   glow,
   photo,
   alt,
   phase,
+  cutout = false,
 }: {
   glow: string;
   photo: string;
   alt: string;
   phase: number;
+  cutout?: boolean;
 }) {
   return (
     <div className="relative w-full max-w-full">
@@ -35,7 +37,11 @@ function Artwork({
         width={720}
         height={720}
         sizes="(min-width: 640px) 40vw, 92vw"
-        className="art-object art-screen art-float relative block aspect-[4/4.4] w-full"
+        className={
+          cutout
+            ? "art-cutout cutout-float relative block aspect-[4/4.4] w-full"
+            : "art-object art-screen art-float relative block aspect-[4/4.4] w-full"
+        }
         style={{ animationDelay: `${phase}s` }}
       />
     </div>
@@ -67,6 +73,7 @@ export function SceneRoutes() {
 export function SceneFormats() {
   return (
     <Artwork
+      cutout
       phase={-8}
       photo={CARD_PAIR_PHOTO}
       alt="Виртуальная и физическая карты Visa на стеклянном пьедестале"

@@ -33,7 +33,8 @@ const EMAIL = "holyplastic@yandex.com";
 const HERO_WAVE = "/media/hero-chrome-wave.webp";
 const CRYPTO_PHOTO = "/media/crypto-flow.webp";
 const PASSPORT_PHOTO = "/media/passport-card.webp";
-const CARD_PAIR_PHOTO = "/media/card-pair.webp";
+const CARD_PAIR_PHOTO = "/media/formats-two-cards.webp";
+const CLOSING_CARD_PHOTO = "/media/closing-glass-card.webp";
 
 const MSG_GENERAL =
   "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления 💰";
@@ -685,14 +686,15 @@ function Pricing() {
           <img
             src={CARD_PAIR_PHOTO}
             alt="Виртуальная и физическая карты Visa рядом на пьедестале"
-            width={640}
-            height={640}
+            width={1100}
+            height={1118}
             loading="lazy"
             decoding="async"
-            sizes="(min-width: 640px) 92vw, 92vw"
-            className="art-object art-screen art-float relative block h-[52vw] max-h-[520px] w-full sm:h-[34vw]"
+            sizes="(min-width: 640px) 70vw, 92vw"
+            className="art-cutout cutout-float relative mx-auto block h-auto w-[92%] max-w-[720px] sm:w-[70%]"
             style={{ animationDelay: "-4s" }}
           />
+
         </Reveal>
 
       </div>
@@ -911,7 +913,28 @@ function Contact() {
         </Reveal>
       </div>
 
+      <Reveal variant="blur" delay={120} className="relative mx-auto mt-16 w-full max-w-[1100px]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[120%] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] opacity-70 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 30%, transparent), transparent 72%), radial-gradient(closest-side at 70% 55%, color-mix(in oklab, var(--magenta) 26%, transparent), transparent 70%)",
+          }}
+        />
+        <img
+          src={CLOSING_CARD_PHOTO}
+          alt="Стеклянная карта HolyPlastic с переливающимся свечением — финальный образ бренда"
+          width={1300}
+          height={867}
+          loading="lazy"
+          decoding="async"
+          sizes="(min-width: 640px) 60vw, 92vw"
+          className="art-cutout cutout-float relative mx-auto block h-auto w-[92vw] max-w-[820px] sm:w-[clamp(520px,52vw,820px)]"
+        />
+      </Reveal>
     </section>
+
 
   );
 }
