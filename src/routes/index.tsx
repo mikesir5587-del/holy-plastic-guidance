@@ -849,9 +849,6 @@ function Pricing() {
             >
               Выбрать физическую
             </TgLink>
-            <p className="mt-6 text-xs opacity-50">
-              Доставка физической пластиковой карты может занимать больше одного дня.
-            </p>
           </div>
         </Reveal>
       </div>
