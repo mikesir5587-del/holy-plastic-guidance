@@ -896,7 +896,7 @@ function Pricing() {
 }
 
 function Contact() {
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<"idle" | "copying" | "copied" | "error">("idle");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -907,28 +907,59 @@ function Contact() {
   );
 
   const copy = useCallback(async () => {
+    if (timer.current) clearTimeout(timer.current);
+    setStatus("copying");
+
+    const withTimeout = (promise: Promise<void>) =>
+      Promise.race([
+        promise,
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error("timeout")), 1500)),
+      ]);
+
+    const legacyCopy = () => {
+      const ta = document.createElement("textarea");
+      ta.value = EMAIL;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, EMAIL.length);
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch {
+        ok = false;
+      }
+      document.body.removeChild(ta);
+      return ok;
+    };
+
+    let ok = false;
     try {
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(EMAIL);
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = EMAIL;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
+        await withTimeout(navigator.clipboard.writeText(EMAIL));
+        ok = true;
       }
-      setCopied(true);
-      if (timer.current) clearTimeout(timer.current);
-      timer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
-      setCopied(false);
-      window.prompt("Скопируйте адрес почты", EMAIL);
+      ok = false;
     }
+    if (!ok) ok = legacyCopy();
+
+    setStatus(ok ? "copied" : "error");
+    timer.current = setTimeout(() => setStatus("idle"), ok ? 1900 : 3000);
   }, []);
+
+  const copied = status === "copied";
+  const label =
+    status === "copied"
+      ? "Скопировано"
+      : status === "error"
+        ? "Не удалось скопировать"
+        : status === "copying"
+          ? "Копируем…"
+          : "Скопировать почту";
 
   return (
     <section
@@ -992,6 +1023,8 @@ function Contact() {
             <button
               type="button"
               onClick={copy}
+              disabled={status === "copying"}
+              aria-label={`${label}: ${EMAIL}`}
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/85 uppercase transition-colors hover:bg-white/10"
             >
               {copied ? (
@@ -999,10 +1032,14 @@ function Contact() {
               ) : (
                 <Copy className="size-4" aria-hidden="true" />
               )}
-              {copied ? "Скопировано" : "Скопировать почту"}
+              {label}
             </button>
-            <span aria-live="polite" className="sr-only">
-              {copied ? "Адрес скопирован" : ""}
+            <span aria-live="polite" role="status" className="sr-only">
+              {status === "copied"
+                ? "Адрес электронной почты скопирован"
+                : status === "error"
+                  ? "Не удалось скопировать адрес, скопируйте его вручную"
+                  : ""}
             </span>
           </div>
         </Reveal>
@@ -1047,7 +1084,7 @@ function Footer() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-[0.68rem] font-semibold tracking-[0.22em] text-white/75 uppercase hover:text-white"
+                className="inline-flex min-h-11 items-center text-[0.68rem] font-semibold tracking-[0.22em] text-white/75 uppercase hover:text-white"
               >
                 {n.label}
               </a>
@@ -1099,7 +1136,7 @@ function StickyCta() {
 
   return (
     <div
-      className={`fixed inset-x-4 bottom-4 z-40 transition-all duration-300 lg:hidden ${
+      className={`sticky-cta-safe fixed inset-x-4 z-40 transition-all duration-300 lg:hidden ${
         hidden ? "pointer-events-none translate-y-6 opacity-0" : "opacity-100"
       }`}
     >
@@ -1117,8 +1154,11 @@ function StickyCta() {
 function Home() {
   return (
     <div className="relative">
+      <a className="skip-link" href="#content">
+        Перейти к содержимому
+      </a>
       <Header />
-      <main>
+      <main id="content" tabIndex={-1}>
         <Hero />
         <Services />
         <Features />
