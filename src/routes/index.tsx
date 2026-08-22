@@ -413,43 +413,24 @@ function Services() {
         <Reveal variant="blur" className="relative">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] opacity-70 blur-2xl"
+            className="pointer-events-none absolute -inset-10 -z-10 opacity-80 blur-3xl"
             style={{
               background:
-                "radial-gradient(60% 60% at 45% 40%, color-mix(in oklab, var(--cyan) 45%, transparent), transparent 70%)",
+                "radial-gradient(50% 50% at 45% 40%, color-mix(in oklab, var(--cyan) 38%, transparent), transparent 72%), radial-gradient(40% 40% at 70% 70%, color-mix(in oklab, var(--magenta) 26%, transparent), transparent 72%)",
             }}
           />
-          <figure
-            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.5rem]"
-            style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
-          >
-            <img
-              src={CRYPTO_PHOTO}
-              alt="Пополнение карты через криптовалютный маршрут"
-              width={640}
-              height={640}
-              loading="lazy"
-              decoding="async"
-              sizes="(min-width: 1024px) 40vw, 92vw"
-              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
-              style={{
-                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[inherit]"
-              style={{
-                boxShadow:
-                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -60px 90px -70px color-mix(in oklab, var(--violet) 90%, transparent)",
-              }}
-            />
-            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
-              Пополнение
-            </figcaption>
-          </figure>
+          <img
+            src={CRYPTO_PHOTO}
+            alt="Пополнение карты через криптовалютный маршрут"
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 1024px) 40vw, 92vw"
+            className="art-object art-screen art-float relative block aspect-square w-full"
+          />
         </Reveal>
+
       </div>
       <Marquee rowA={ROW_A} rowB={ROW_B} />
     </section>
