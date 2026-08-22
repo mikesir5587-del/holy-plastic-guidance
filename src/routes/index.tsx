@@ -597,9 +597,32 @@ function Pricing() {
             aria-hidden="true"
             className="chrome-arc pointer-events-none absolute -top-[40%] -left-[30%] aspect-square w-[120%] opacity-20"
           />
-          <div>
+          <span
+            aria-hidden="true"
+            className="emboss pointer-events-none absolute inset-0 text-white opacity-70"
+          />
+          <div
+            aria-hidden="true"
+            className="caustic pointer-events-none absolute -right-[25%] -bottom-[25%] size-[70%] opacity-25"
+          />
+          <SectionOrbits
+            className="top-1/2 left-1/2 aspect-square w-[110%] -translate-x-1/2 -translate-y-1/2 text-white"
+            rings={2}
+            nodes={2}
+            opacity={0.25}
+          />
+          <GlassFragment className="top-[12%] right-[8%] size-20 sm:size-28" rotate={-18} />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-px lg:block"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent, color-mix(in oklab, var(--cyan) 60%, transparent) 35%, color-mix(in oklab, var(--magenta) 60%, transparent) 70%, transparent)",
+            }}
+          />
+          <div className="relative z-10">
             <p className="kicker text-white">Virtual</p>
-            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+            <p className="display price-emboss mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
               11 990 ₽
             </p>
             <ul className="mt-10 space-y-3 text-sm text-white/65">
@@ -608,7 +631,7 @@ function Pricing() {
               <li>Сопровождение до первой операции</li>
             </ul>
           </div>
-          <div className="mt-12">
+          <div className="relative z-10 mt-12">
             <TgLink
               className={`${btnLight} w-full sm:w-auto`}
               label="Выбрать виртуальную карту в Telegram"
@@ -621,11 +644,28 @@ function Pricing() {
 
         <Reveal
           delay={120}
-          className="scene-milk flex min-h-[70svh] flex-col justify-between px-5 py-16 sm:px-12"
+          className="scene-milk relative flex min-h-[70svh] flex-col justify-between overflow-hidden px-5 py-16 sm:px-12"
         >
-          <div>
+          <span
+            aria-hidden="true"
+            className="emboss pointer-events-none absolute inset-0 text-[color:var(--ink)] opacity-50"
+          />
+          <div
+            aria-hidden="true"
+            className="grid-lines pointer-events-none absolute inset-0 text-[color:var(--ink)] opacity-40"
+          />
+          <GlassFragment
+            tone="light"
+            className="right-[8%] bottom-[14%] size-24 sm:size-36"
+            rotate={12}
+            delay={4}
+          />
+          <div className="relative z-10">
             <p className="kicker text-[color:var(--ink)]">Physical</p>
-            <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
+            <p
+              className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]"
+              style={{ textShadow: "0 1px 0 rgba(255,255,255,0.9), 0 18px 40px rgba(0,0,0,0.16)" }}
+            >
               14 990 ₽
             </p>
             <p className="mt-2 text-sm opacity-60">+ доставка</p>
@@ -635,7 +675,7 @@ function Pricing() {
               <li>Сопровождение до активации пластика</li>
             </ul>
           </div>
-          <div className="mt-12">
+          <div className="relative z-10 mt-12">
             <TgLink
               className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[color:var(--ink)] px-7 text-[0.78rem] font-bold tracking-[0.16em] text-white uppercase transition-transform duration-300 hover:scale-[1.03] sm:w-auto"
               label="Выбрать физическую карту в Telegram"
@@ -649,6 +689,7 @@ function Pricing() {
           </div>
         </Reveal>
       </div>
+
     </section>
   );
 }
