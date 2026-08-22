@@ -756,3 +756,69 @@
     animation: none !important;
   }
 }
+
+/* --- skip link --- */
+.skip-link {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
+  left: 0.5rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 9999px;
+  background: #fff;
+  color: #0b0b0c;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* focused content is always revealed, never hidden behind a reveal state */
+.reveal:focus-within,
+.reveal-blur:focus-within {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* --- safe areas --- */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.sticky-cta-safe {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+}
+
+[id] {
+  scroll-margin-top: 96px;
+}
+
+/* --- GPU cost reduction on touch / reduced motion --- */
+@media (hover: none) and (pointer: coarse) {
+  .marquee-track,
+  .marquee-track-rev {
+    will-change: auto;
+  }
+  .caustic,
+  .chrome-arc {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-float,
+  .cutout-float,
+  .card-float,
+  .drift {
+    animation: none !important;
+  }
+  * {
+    will-change: auto !important;
+  }
+}
