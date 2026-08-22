@@ -259,12 +259,14 @@ function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
         <div className="grid-lines absolute inset-0 opacity-70" />
         <div
-          className="absolute top-[30%] left-1/2 h-[70vw] w-[70vw] -translate-x-1/2 rounded-full opacity-45 blur-[110px]"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 60%), radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--magenta) 55%, transparent), transparent 62%)",
-            ...(motion ? p(0.06) : {}),
-          }}
+          className="caustic absolute top-[26%] left-1/2 h-[80vw] w-[80vw] max-w-[1000px] -translate-x-1/2 opacity-45"
+          style={motion ? p(0.06) : undefined}
+        />
+        <SectionOrbits
+          className="top-[46%] left-1/2 aspect-square w-[150vw] max-w-[1250px] -translate-x-1/2 -translate-y-1/2"
+          rings={4}
+          nodes={4}
+          opacity={0.5}
         />
         <div
           className="chrome-arc drift absolute top-[18%] left-1/2 aspect-square w-[120vw] max-w-[1500px] -translate-x-1/2"
@@ -274,7 +276,22 @@ function Hero() {
           className="chrome-arc absolute top-[42%] left-1/2 aspect-square w-[70vw] max-w-[900px] -translate-x-1/2 opacity-25"
           style={motion ? p(-0.04) : undefined}
         />
+        <TopoLines className="inset-x-0 bottom-0 h-[38%] w-full" opacity={0.22} />
+        <div style={motion ? p(0.12) : undefined}>
+          <GlassFragment className="top-[26%] left-[4%] size-24 sm:size-36" rotate={-14} />
+        </div>
+        <div style={motion ? p(-0.14) : undefined}>
+          <GlassFragment className="top-[34%] right-[5%] size-20 sm:size-28" rotate={22} delay={3} />
+        </div>
+        <div style={motion ? p(0.09) : undefined}>
+          <GlassFragment
+            className="bottom-[16%] left-[16%] hidden size-24 sm:block"
+            rotate={8}
+            delay={6}
+          />
+        </div>
       </div>
+
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <div className="relative z-10 flex items-baseline justify-between gap-4">
