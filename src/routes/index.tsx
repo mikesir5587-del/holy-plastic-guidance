@@ -907,79 +907,52 @@ function Contact() {
         <TopoLines className="inset-x-0 bottom-0 h-[34%] w-full" opacity={0.16} lines={6} />
       </div>
 
-      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <Reveal variant="blur" className="relative order-2 lg:order-1">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-6 -z-10 rounded-[4rem] opacity-70 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(55% 55% at 50% 50%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 72%)",
-            }}
-          />
-          <figure
-            className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.75rem]"
-            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
-          >
-            <img
-              src={HANDS_PHOTO}
-              alt="Стеклянные ладони, оберегающие карту Visa"
-              width={720}
-              height={720}
-              loading="lazy"
-              decoding="async"
-              sizes="(min-width: 1024px) 46vw, 92vw"
-              className="scene-kenburns absolute inset-0 h-full w-full object-cover"
-              style={{
-                animationDelay: "-11s",
-                maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
-              }}
-            />
-            <div
+      <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center text-center">
+        <Reveal className="relative z-10 flex w-full flex-col items-center">
+          <span className="relative flex items-center justify-center">
+            <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              className="pointer-events-none absolute aspect-square w-[240%] rounded-full border border-white/12"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute aspect-square w-[360%] rounded-full border border-white/8"
+            />
+            <span
+              aria-hidden="true"
+              className="lens pointer-events-none absolute aspect-[3/2] w-[170%] opacity-70"
+            />
+            <Logo className="relative h-20 sm:h-28" />
+          </span>
+
+          <div className="relative mt-12 w-full">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 left-1/2 h-[160%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-3xl"
               style={{
-                boxShadow:
-                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--cyan) 80%, transparent)",
+                background:
+                  "radial-gradient(closest-side, color-mix(in oklab, var(--violet) 34%, transparent), transparent 72%), radial-gradient(closest-side at 30% 60%, color-mix(in oklab, var(--cyan) 26%, transparent), transparent 70%), radial-gradient(closest-side at 72% 40%, color-mix(in oklab, var(--magenta) 24%, transparent), transparent 70%)",
               }}
             />
-            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
-              Сопровождение
-            </figcaption>
-          </figure>
-        </Reveal>
+            <h2 className="display h-hero title-glow relative leading-none lg:-ml-[2vw]">
+              Начнём?
+            </h2>
+          </div>
 
-        <Reveal className="relative z-10 order-1 flex flex-col items-start text-left lg:order-2">
-
-        <span className="relative flex items-center justify-center">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute aspect-square w-[240%] rounded-full border border-white/12"
-          />
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute aspect-square w-[360%] rounded-full border border-white/8"
-          />
-          <span
-            aria-hidden="true"
-            className="lens pointer-events-none absolute aspect-[3/2] w-[170%] opacity-70"
-          />
-          <Logo className="relative h-20 sm:h-28" />
-        </span>
-        <h2 className="display h-hero mt-10 leading-none">Начнём?</h2>
-
-
-          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-            <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
+          <div className="mt-12 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row sm:justify-center">
+            <TgLink
+              className={`${btnLight} w-full sm:w-auto`}
+              label="Написать в Telegram"
+              message={MSG_GENERAL}
+            >
               <Send className="size-4" aria-hidden="true" /> Написать в Telegram
             </TgLink>
-            <a href={MAILTO} className={`${btnGhost} text-white`}>
+            <a href={MAILTO} className={`${btnGhost} w-full text-white sm:w-auto`}>
               <Mail className="size-4" aria-hidden="true" /> Написать письмо
             </a>
           </div>
 
-          <div className="mt-8 flex flex-col items-start gap-3">
+          <div className="mt-10 flex flex-col items-center gap-3">
             <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
             <button
               type="button"
@@ -999,6 +972,7 @@ function Contact() {
           </div>
         </Reveal>
       </div>
+
     </section>
 
   );
