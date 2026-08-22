@@ -666,3 +666,52 @@
     animation: none !important;
   }
 }
+
+/* --- frameless artwork objects --- */
+@utility art-object {
+  object-fit: contain;
+  mask-image:
+    radial-gradient(66% 66% at 50% 50%, black 34%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 18%, black 80%, transparent 100%);
+  -webkit-mask-image:
+    radial-gradient(66% 66% at 50% 50%, black 34%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 18%, black 80%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+}
+
+@utility art-screen {
+  mix-blend-mode: screen;
+}
+
+@keyframes hp-art-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -1.6%, 0) scale(1.02);
+  }
+}
+
+@utility art-float {
+  animation: hp-art-float 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+@utility title-glow {
+  text-shadow:
+    0 0 18px color-mix(in oklab, white 55%, transparent),
+    0 0 46px color-mix(in oklab, var(--cyan) 45%, transparent),
+    0 0 90px color-mix(in oklab, var(--violet) 42%, transparent),
+    0 0 140px color-mix(in oklab, var(--magenta) 32%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-float {
+    animation: none !important;
+  }
+}
