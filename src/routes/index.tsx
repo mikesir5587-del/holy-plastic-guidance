@@ -271,13 +271,14 @@ function Header() {
           </span>
 
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-white/20 lg:hidden"
+            aria-label={open ? "Закрыть меню" : "Открыть меню"}
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-white/25 lg:hidden"
           >
-            <span className="sr-only">Меню</span>
             <span aria-hidden="true" className="flex flex-col gap-[5px]">
               <span
                 className={`block h-px w-5 bg-white transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`}
@@ -295,9 +296,11 @@ function Header() {
 
       {open && (
         <div
+          ref={menuRef}
           id="mobile-nav"
-          className="border-t border-white/10 bg-[color:var(--ink)]/95 px-5 py-6 backdrop-blur-xl lg:hidden"
+          className="max-h-[70svh] overflow-y-auto border-t border-white/10 bg-[color:var(--ink)]/95 px-5 py-6 backdrop-blur-xl lg:hidden"
         >
+
           <nav aria-label="Мобильная навигация" className="flex flex-col">
             {NAV.map((n) => (
               <a
