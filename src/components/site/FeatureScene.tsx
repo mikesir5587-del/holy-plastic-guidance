@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { GlassFragment, ScanBeam } from "@/components/site/Decor";
 import walletPhoto from "@/assets/wallet-phone-card.webp.asset.json";
 import globePhoto from "@/assets/glass-globe.webp.asset.json";
-import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
+import sculpturePhoto from "@/assets/chrome-sculpture.webp.asset.json";
 
 const stroke = "currentColor";
 
@@ -223,8 +223,8 @@ export function SceneFormats() {
   return (
     <Installation
       shape="stack"
-      photo={cryptoPhoto}
-      photoClass="opacity-40"
+      photo={sculpturePhoto}
+      photoClass="opacity-45"
 
       glow="radial-gradient(70% 60% at 74% 22%, color-mix(in oklab, var(--magenta) 20%, transparent), transparent 62%), radial-gradient(70% 60% at 24% 88%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 64%)"
     >
