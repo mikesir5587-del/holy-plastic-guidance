@@ -345,17 +345,18 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 sm:px-8">
-        <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,560px)_1fr]">
-          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
+        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,860px)_minmax(0,1fr)] lg:gap-6">
+          <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1 lg:mb-16">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
             Apple&nbsp;Pay, Google&nbsp;Pay и доступных переводов.
           </p>
 
-          <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
-            <CardArt className="mx-auto w-full max-w-[560px]" />
+          <div className="order-1 -mx-2 lg:order-2 lg:mx-0">
+            <HeroLiquidCard className="mx-auto w-full max-w-[860px] lg:w-[46vw] lg:min-w-[620px]" />
           </div>
 
-          <div className="order-3 flex flex-col items-start gap-5 lg:items-end">
+          <div className="order-3 flex flex-col items-start gap-5 lg:mb-16 lg:items-end">
+
             <span className="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.24em] text-white/55 uppercase">
               <SiApple aria-hidden="true" /> Apple Pay
               <span aria-hidden="true" className="opacity-40">/</span>
