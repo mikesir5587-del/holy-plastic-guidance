@@ -346,7 +346,7 @@ function Hero() {
         <div className="grid items-end gap-10 lg:grid-cols-[1fr_minmax(0,560px)_1fr]">
           <p className="order-2 max-w-sm text-[0.95rem] leading-relaxed text-white/65 lg:order-1">
             Дебетовая Visa Великобритании с личным сопровождением — для международных платежей,
-            Apple&nbsp;Pay и доступных переводов.
+            Apple&nbsp;Pay, Google&nbsp;Pay и доступных переводов.
           </p>
 
           <div className="order-1 lg:order-2" style={motion ? p(-0.08) : undefined}>
