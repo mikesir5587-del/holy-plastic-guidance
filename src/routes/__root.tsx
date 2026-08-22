@@ -171,8 +171,8 @@ function RootShell({ children }: { children: ReactNode }) {
               @holy_plastic
             </a>{" "}
             или по почте{" "}
-            <a style={{ color: "#7fe7ff" }} href="mailto:holyplastic@yandex.com">
-              holyplastic@yandex.com
+            <a style={{ color: "#7fe7ff" }} href="mailto:holyyplastic@gmail.com">
+              holyyplastic@gmail.com
             </a>
             .
           </div>
