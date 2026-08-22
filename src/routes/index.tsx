@@ -712,6 +712,48 @@ function Pricing() {
         <Reveal>
           <h2 className="display h-section leading-none">Два формата</h2>
         </Reveal>
+
+        <Reveal variant="blur" delay={80} className="relative mt-12 sm:mt-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-5 -z-10 rounded-[3.5rem] opacity-70 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(50% 70% at 50% 50%, color-mix(in oklab, var(--magenta) 40%, transparent), transparent 72%), radial-gradient(50% 70% at 20% 60%, color-mix(in oklab, var(--cyan) 34%, transparent), transparent 72%)",
+            }}
+          />
+          <figure
+            className="glass-panel relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] sm:aspect-[21/9]"
+            style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
+          >
+            <img
+              src={cardPairPhoto.url}
+              alt="Виртуальная и физическая карты Visa рядом на пьедестале"
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 640px) 92vw, 92vw"
+              className="scene-kenburns absolute inset-0 h-full w-full scale-[1.35] object-cover object-[50%_38%] sm:scale-100"
+              style={{
+                animationDelay: "-14s",
+                maskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(94% 96% at 50% 50%, black 74%, transparent 100%)",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -80px 120px -90px color-mix(in oklab, var(--violet) 90%, transparent)",
+              }}
+            />
+            <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+              Virtual · Physical
+            </figcaption>
+          </figure>
+        </Reveal>
       </div>
 
       <div className="mt-14 grid sm:mt-20 lg:grid-cols-2">
@@ -735,18 +777,7 @@ function Pricing() {
             opacity={0.25}
           />
           <GlassFragment className="top-[12%] right-[8%] size-20 sm:size-28" rotate={-18} />
-          <img
-            src={cardPairPhoto.url}
-            alt=""
-            aria-hidden="true"
-            width={640}
-            height={640}
-            loading="lazy"
-            decoding="async"
-            sizes="(min-width: 640px) 30vw, 62vw"
-            className="pointer-events-none absolute right-[-10%] bottom-[2%] aspect-square w-[62vw] max-w-[360px] object-cover opacity-60 mix-blend-screen sm:right-[4%] sm:bottom-[8%] sm:w-[30vw]"
-            style={{ maskImage: "radial-gradient(62% 62% at 50% 50%, black 30%, transparent 76%)" }}
-          />
+
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 right-0 hidden w-px lg:block"
