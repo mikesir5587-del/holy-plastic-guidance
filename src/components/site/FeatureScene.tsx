@@ -167,6 +167,9 @@ export function SceneRoutes() {
   return (
     <Installation
       shape="split"
+      photo={globePhoto}
+      photoClass="opacity-45"
+
       glow="radial-gradient(60% 60% at 20% 30%, color-mix(in oklab, var(--violet) 22%, transparent), transparent 62%), radial-gradient(60% 60% at 85% 78%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 64%)"
     >
       <g stroke={stroke} fill="none" opacity="0.4" strokeWidth="0.7">
