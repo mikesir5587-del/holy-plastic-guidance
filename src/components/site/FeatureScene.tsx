@@ -6,7 +6,7 @@
 
 const WALLET_PHOTO = "/media/wallet-phone-card.webp";
 const GLOBE_PHOTO = "/media/glass-globe.webp";
-const CARD_PAIR_PHOTO = "/media/card-pair.webp";
+const CARD_PAIR_PHOTO = "/media/formats-two-cards.webp";
 
 function Artwork({
   glow,
