@@ -606,20 +606,8 @@ function Steps() {
   return (
     <section id="steps" className="relative overflow-hidden py-24 sm:py-36">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
-        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.14} lines={6} />
+        <TopoLines className="inset-x-0 top-[20%] h-[60%] w-full" opacity={0.12} lines={6} />
         <div className="caustic absolute top-[30%] -left-[20%] size-[70vw] max-w-[760px] opacity-20" />
-        <img
-          src={passportPhoto.url}
-          alt=""
-          aria-hidden="true"
-          width={640}
-          height={640}
-          loading="lazy"
-          decoding="async"
-          sizes="(min-width: 1024px) 38vw, 0px"
-          className="absolute top-[4%] right-[-6%] hidden aspect-square w-[36vw] max-w-[400px] object-cover opacity-40 mix-blend-screen lg:block"
-          style={{ maskImage: "radial-gradient(60% 60% at 50% 50%, black 30%, transparent 76%)" }}
-        />
       </div>
 
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
@@ -627,37 +615,84 @@ function Steps() {
           <h2 className="display h-section leading-none">4 шага</h2>
         </Reveal>
 
-        <div className="relative mt-16 sm:mt-24">
-          {/* glass rail: vertical on mobile, horizontal from sm */}
-          <div
-            aria-hidden="true"
-            className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15 sm:top-6 sm:right-0 sm:bottom-auto sm:left-0 sm:h-px sm:w-auto"
-          >
-            <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent sm:hidden" />
-            <span className="rail-pulse-x absolute inset-y-0 hidden w-40 bg-gradient-to-r from-transparent via-white to-transparent sm:block" />
-          </div>
-
-          <ol className="grid gap-12 sm:grid-cols-4 sm:gap-8">
-            {STEPS.map((s, i) => (
-              <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8 sm:pt-14 sm:pl-0">
-                <span
-                  aria-hidden="true"
-                  className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)] sm:top-[17px]"
+        <div className="mt-14 grid gap-12 sm:mt-20 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16">
+          <Reveal variant="blur" className="lg:sticky lg:top-28 lg:self-start">
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-4 -z-10 rounded-[3rem] opacity-70 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(60% 60% at 50% 45%, color-mix(in oklab, var(--violet) 48%, transparent), transparent 70%)",
+                }}
+              />
+              <figure
+                className="glass-panel relative aspect-square w-full overflow-hidden rounded-[2.5rem]"
+                style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
+              >
+                <img
+                  src={passportPhoto.url}
+                  alt="Паспорт и карта Visa: проверка документов и KYC"
+                  width={640}
+                  height={640}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 40vw, 92vw"
+                  className="scene-kenburns absolute inset-0 h-full w-full object-cover"
                   style={{
-                    boxShadow:
-                      "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                    animationDelay: "-6s",
+                    maskImage: "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
+                    WebkitMaskImage:
+                      "radial-gradient(96% 96% at 50% 50%, black 78%, transparent 100%)",
                   }}
                 />
-                <span
+                <div
                   aria-hidden="true"
-                  className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white sm:top-[22px]"
+                  className="pointer-events-none absolute inset-0 rounded-[inherit]"
+                  style={{
+                    boxShadow:
+                      "inset 0 0 0 1px color-mix(in oklab, white 14%, transparent), inset 0 -60px 90px -70px color-mix(in oklab, var(--cyan) 80%, transparent)",
+                  }}
                 />
-                <span className="kicker text-white">{s.n}</span>
-                <p className="display mt-3 text-[8vw] leading-none sm:text-[2.4vw]">{s.t}</p>
-                <p className="mt-3 text-sm text-white/55">{s.d}</p>
-              </Reveal>
-            ))}
-          </ol>
+                <figcaption className="kicker absolute bottom-5 left-6 text-white/70">
+                  KYC
+                </figcaption>
+              </figure>
+            </div>
+          </Reveal>
+
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute top-0 bottom-0 left-[7px] w-px overflow-hidden bg-white/15"
+            >
+              <span className="rail-pulse absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-white to-transparent" />
+            </div>
+
+            <ol className="grid gap-12">
+              {STEPS.map((s, i) => (
+                <Reveal as="li" key={s.n} delay={i * 90} className="relative pl-8">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[6px] left-0 block size-[15px] rounded-full border border-white/50 bg-[color:var(--ink)]"
+                    style={{
+                      boxShadow:
+                        "0 0 0 5px color-mix(in oklab, white 6%, transparent), 0 0 22px color-mix(in oklab, var(--cyan) 55%, transparent)",
+                    }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[11px] left-[5px] block size-[5px] rounded-full bg-white"
+                  />
+                  <span className="kicker text-white">{s.n}</span>
+                  <p className="display mt-3 text-[8vw] leading-none sm:text-[3.4vw] lg:text-[2.6vw]">
+                    {s.t}
+                  </p>
+                  <p className="mt-3 text-sm text-white/55">{s.d}</p>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
 
         <p className="mt-16 max-w-2xl text-xs leading-relaxed text-white/40">
@@ -667,6 +702,7 @@ function Steps() {
     </section>
   );
 }
+
 
 
 function Pricing() {
