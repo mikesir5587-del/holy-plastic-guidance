@@ -917,6 +917,13 @@ function Pricing() {
         </Reveal>
       </div>
 
+      <Reveal variant="blur" delay={80} className="mx-auto mt-14 max-w-4xl px-5 text-center sm:px-8">
+        <p className="text-xs leading-relaxed text-white/55 sm:text-sm">
+          Указанная стоимость носит информационный характер и не является публичной офертой.
+          Итоговая стоимость и условия оказания услуги согласовываются индивидуально.
+        </p>
+      </Reveal>
+
     </section>
   );
 }
@@ -1140,7 +1147,13 @@ function Footer() {
           эмитентом или платёжной системой и не выпускаем карты. Условия обслуживания и доступность
           сервисов определяются банком и могут изменяться.
         </p>
-        <p className="mt-6 text-xs text-white/60">© {new Date().getFullYear()} HolyPlastic</p>
+        <div className="mt-8 space-y-2 text-xs leading-relaxed text-white/55">
+          <p>© 2026 HolyPlastic. Все права защищены.</p>
+          <p>
+            Информация на сайте не является публичной офертой. Стоимость и условия оказания услуг
+            уточняются индивидуально.
+          </p>
+        </div>
       </div>
     </footer>
   );
