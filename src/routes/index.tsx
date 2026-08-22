@@ -459,7 +459,20 @@ const NEEDED = [
 function Security() {
   return (
     <section id="security" className="scene-milk grain relative overflow-hidden py-24 sm:py-36">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 text-[color:var(--ink)]"
+      >
+        <div className="grid-lines absolute inset-0 opacity-70" />
+        <TopoLines className="inset-x-0 top-0 h-[40%] w-full" opacity={0.12} lines={7} />
+        <GlassFragment
+          tone="light"
+          className="top-[12%] right-[6%] size-24 sm:size-40"
+          rotate={16}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Прозрачно</h2>
         </Reveal>
@@ -467,22 +480,45 @@ function Security() {
         <Reveal delay={80} className="mt-14 sm:mt-20">
           <p className="kicker text-[color:var(--ink)]">Нужно</p>
           <div className="hairline my-6 text-[color:var(--ink)]" />
-          <ol className="grid gap-8 sm:grid-cols-3">
-            {NEEDED.map((item) => (
-              <li key={item.n} className="border-t border-[color:var(--ink)]/15 pt-6">
-                <span className="kicker text-[color:var(--ink)]">{item.n}</span>
-                <p className="mt-4 text-[1.35rem] leading-tight font-semibold sm:text-[1.8rem]">
+          <ol className="grid gap-6 sm:grid-cols-3 sm:gap-8">
+            {NEEDED.map((item, i) => (
+              <li
+                key={item.n}
+                className="group relative overflow-hidden rounded-2xl border border-[color:var(--ink)]/12 bg-white/45 p-6 backdrop-blur-sm sm:p-8"
+                style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8)" }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="emboss pointer-events-none absolute inset-0 text-[color:var(--ink)]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, color-mix(in oklab, var(--violet) 55%, transparent), transparent)",
+                  }}
+                />
+                <span className="kicker relative text-[color:var(--ink)]">{item.n}</span>
+                <p className="relative mt-4 text-[1.3rem] leading-tight font-semibold text-balance sm:text-[1.7rem]">
                   {item.t}
                 </p>
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-6 bottom-0 h-10 opacity-25"
+                  style={{
+                    background: `linear-gradient(180deg, color-mix(in oklab, var(--ink) ${8 + i * 3}%, transparent), transparent)`,
+                  }}
+                />
               </li>
             ))}
           </ol>
         </Reveal>
-
       </div>
     </section>
   );
 }
+
 
 const STEPS = [
   { n: "01", t: "Выбор", d: "Обсуждаем сценарий и формат карты." },
