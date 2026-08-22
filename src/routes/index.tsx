@@ -199,19 +199,44 @@ function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Escape closes the mobile menu, focus returns to the toggle, body scroll unlocks.
+  // Open: focus the first item, trap Tab/Shift+Tab inside the panel, lock scroll.
+  // Escape closes and returns focus to the toggle.
   useEffect(() => {
     if (!open) {
       document.body.style.removeProperty("overflow");
       return;
     }
     document.body.style.overflow = "hidden";
-    const first = menuRef.current?.querySelector<HTMLElement>("a, button");
-    first?.focus();
+    const items = () =>
+      Array.from(
+        menuRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((el) => el.offsetParent !== null || el === document.activeElement);
+    items()[0]?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
         toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = items();
+      if (list.length === 0) return;
+      const first = list[0]!;
+      const last = list[list.length - 1]!;
+      const active = document.activeElement as HTMLElement | null;
+      if (!menuRef.current?.contains(active)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+        return;
+      }
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
     document.addEventListener("keydown", onKey);
@@ -220,6 +245,7 @@ function Header() {
       document.body.style.removeProperty("overflow");
     };
   }, [open]);
+
 
   return (
     <header
