@@ -26,10 +26,11 @@ const MSG_GENERAL =
 const MSG_VIRTUAL = "Здравствуйте! Расскажите, пожалуйста, подробнее о виртуальной карте 💰";
 const MSG_PHYSICAL = "Здравствуйте! Расскажите, пожалуйста, подробнее о физической карте 💰";
 
-const MAILTO = `mailto:${EMAIL}?${new URLSearchParams({
-  subject: "Консультация HolyPlastic",
-  body: "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления.",
-}).toString()}`;
+const MAIL_SUBJECT = encodeURIComponent("Консультация HolyPlastic");
+const MAIL_BODY = encodeURIComponent(
+  "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления.",
+);
+const MAILTO = `mailto:${EMAIL}?subject=${MAIL_SUBJECT}&body=${MAIL_BODY}`;
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -39,7 +40,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 12 000 ₽, Physical 15 000 ₽.",
+          "Дебетовая Visa Великобритании с личным сопровождением: Apple Pay, международные сервисы, доступные переводы. Virtual 11 990 ₽, Physical 14 990 ₽.",
       },
       { property: "og:title", content: "HolyPlastic — Visa без границ" },
       {
@@ -436,12 +437,6 @@ function Security() {
           </ol>
         </Reveal>
 
-        <Reveal delay={200}>
-          <div className="hairline mt-16 text-[color:var(--ink)]" />
-          <p className="mt-8 max-w-xl text-base opacity-60">
-            Работаем только с достоверными данными и в рамках правил банка.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
@@ -509,7 +504,7 @@ function Pricing() {
           <div>
             <p className="kicker text-white">Virtual</p>
             <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
-              12 000 ₽
+              11 990 ₽
             </p>
             <ul className="mt-10 space-y-3 text-sm text-white/65">
               <li>Виртуальная Visa для онлайн-платежей</li>
@@ -535,7 +530,7 @@ function Pricing() {
           <div>
             <p className="kicker text-[color:var(--ink)]">Physical</p>
             <p className="display mt-6 text-[13vw] leading-none sm:text-[6vw] lg:text-[4.4vw]">
-              15 000 ₽
+              14 990 ₽
             </p>
             <p className="mt-2 text-sm opacity-60">+ доставка</p>
             <ul className="mt-10 space-y-3 text-sm opacity-70">
@@ -641,9 +636,6 @@ function Contact() {
             )}
             {copied ? "Скопировано" : "Скопировать почту"}
           </button>
-          <p className="max-w-xs text-xs text-white/35">
-            Если почтовое приложение не открывается — адрес можно скопировать.
-          </p>
           <span aria-live="polite" className="sr-only">
             {copied ? "Адрес скопирован" : ""}
           </span>
