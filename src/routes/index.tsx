@@ -970,35 +970,37 @@ function Contact() {
         <h2 className="display h-hero mt-10 leading-none">Начнём?</h2>
 
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
-            <Send className="size-4" aria-hidden="true" /> Написать в Telegram
-          </TgLink>
-          <a href={MAILTO} className={`${btnGhost} text-white`}>
-            <Mail className="size-4" aria-hidden="true" /> Написать письмо
-          </a>
-        </div>
+          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
+            <TgLink className={btnLight} label="Написать в Telegram" message={MSG_GENERAL}>
+              <Send className="size-4" aria-hidden="true" /> Написать в Telegram
+            </TgLink>
+            <a href={MAILTO} className={`${btnGhost} text-white`}>
+              <Mail className="size-4" aria-hidden="true" /> Написать письмо
+            </a>
+          </div>
 
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
-          <button
-            type="button"
-            onClick={copy}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
-          >
-            {copied ? (
-              <Check className="size-4" aria-hidden="true" />
-            ) : (
-              <Copy className="size-4" aria-hidden="true" />
-            )}
-            {copied ? "Скопировано" : "Скопировать почту"}
-          </button>
-          <span aria-live="polite" className="sr-only">
-            {copied ? "Адрес скопирован" : ""}
-          </span>
-        </div>
-      </Reveal>
+          <div className="mt-8 flex flex-col items-start gap-3">
+            <p className="text-sm tracking-[0.08em] text-white/70">{EMAIL}</p>
+            <button
+              type="button"
+              onClick={copy}
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/25 px-5 text-[0.72rem] font-semibold tracking-[0.18em] text-white/80 uppercase transition-colors hover:bg-white/10"
+            >
+              {copied ? (
+                <Check className="size-4" aria-hidden="true" />
+              ) : (
+                <Copy className="size-4" aria-hidden="true" />
+              )}
+              {copied ? "Скопировано" : "Скопировать почту"}
+            </button>
+            <span aria-live="polite" className="sr-only">
+              {copied ? "Адрес скопирован" : ""}
+            </span>
+          </div>
+        </Reveal>
+      </div>
     </section>
+
   );
 }
 
