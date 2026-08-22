@@ -1151,8 +1151,41 @@ function StickyCta() {
   );
 }
 
+/**
+ * Direct /#steps, /#pricing, /#contact must land at the section on first paint —
+ * reveal-animated sections would otherwise delay the jump. Smooth scrolling stays
+ * for in-page clicks only.
+ */
+function useInitialHashScroll() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+
+    const jump = () => {
+      const target = document.querySelector(hash);
+      if (!(target instanceof HTMLElement)) return false;
+      const prev = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      target.scrollIntoView({ block: "start", behavior: "auto" });
+      requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = prev;
+      });
+      return true;
+    };
+
+    if (jump()) return;
+    const raf = requestAnimationFrame(() => {
+      jump();
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
+}
+
 function Home() {
+  useInitialHashScroll();
+
   return (
+
     <div className="relative">
       <a className="skip-link" href="#content">
         Перейти к содержимому
