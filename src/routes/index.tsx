@@ -14,11 +14,6 @@ import {
 } from "react-icons/si";
 import { Copy, Check, ArrowUpRight, Send, Mail } from "lucide-react";
 
-import heroWave from "@/assets/hero-chrome-wave.webp.asset.json";
-import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
-import passportPhoto from "@/assets/passport-card.webp.asset.json";
-import handsPhoto from "@/assets/guardian-hands.webp.asset.json";
-import cardPairPhoto from "@/assets/card-pair.webp.asset.json";
 import { HeroLiquidCard } from "@/components/site/HeroLiquidCard";
 import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
@@ -35,6 +30,11 @@ import {
 
 const TELEGRAM = "https://t.me/holy_plastic";
 const EMAIL = "holyplastic@yandex.com";
+const HERO_WAVE = "/media/hero-chrome-wave.webp";
+const CRYPTO_PHOTO = "/media/crypto-flow.webp";
+const PASSPORT_PHOTO = "/media/passport-card.webp";
+const HANDS_PHOTO = "/media/guardian-hands.webp";
+const CARD_PAIR_PHOTO = "/media/card-pair.webp";
 
 const MSG_GENERAL =
   "Здравствуйте! Хочу оформить карту. Расскажите, пожалуйста, подробнее о процессе оформления 💰";
@@ -291,7 +291,7 @@ function Hero() {
           style={motion ? p(-0.04) : undefined}
         />
         <img
-          src={heroWave.url}
+          src={HERO_WAVE}
           alt=""
           aria-hidden="true"
           fetchPriority="high"
@@ -424,7 +424,7 @@ function Services() {
             style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
           >
             <img
-              src={cryptoPhoto.url}
+              src={CRYPTO_PHOTO}
               alt="Пополнение карты через криптовалютный маршрут"
               width={640}
               height={640}
@@ -631,7 +631,7 @@ function Steps() {
                 style={{ boxShadow: "0 50px 90px -50px rgba(0,0,0,0.95)" }}
               >
                 <img
-                  src={passportPhoto.url}
+                  src={PASSPORT_PHOTO}
                   alt="Паспорт и карта Visa: проверка документов и KYC"
                   width={640}
                   height={640}
@@ -727,7 +727,7 @@ function Pricing() {
             style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
           >
             <img
-              src={cardPairPhoto.url}
+              src={CARD_PAIR_PHOTO}
               alt="Виртуальная и физическая карты Visa рядом на пьедестале"
               width={640}
               height={640}
@@ -922,7 +922,7 @@ function Contact() {
             style={{ boxShadow: "0 60px 100px -60px rgba(0,0,0,0.95)" }}
           >
             <img
-              src={handsPhoto.url}
+              src={HANDS_PHOTO}
               alt="Стеклянные ладони, оберегающие карту Visa"
               width={720}
               height={720}

@@ -5,9 +5,10 @@
  */
 
 import { ScanBeam } from "@/components/site/Decor";
-import walletPhoto from "@/assets/wallet-phone-card.webp.asset.json";
-import globePhoto from "@/assets/glass-globe.webp.asset.json";
-import cardPairPhoto from "@/assets/card-pair.webp.asset.json";
+
+const WALLET_PHOTO = "/media/wallet-phone-card.webp";
+const GLOBE_PHOTO = "/media/glass-globe.webp";
+const CARD_PAIR_PHOTO = "/media/card-pair.webp";
 
 type Shape = "arch" | "split" | "stack";
 
@@ -22,7 +23,7 @@ function Portal({
 }: {
   shape: Shape;
   glow: string;
-  photo: { url: string };
+  photo: string;
   alt: string;
   label: string;
   phase: number;
@@ -50,7 +51,7 @@ function Portal({
         <div aria-hidden="true" className="grid-lines absolute inset-0 opacity-25" />
 
         <img
-          src={photo.url}
+          src={photo}
           alt={alt}
           loading="lazy"
           decoding="async"
@@ -92,7 +93,7 @@ export function SceneWallet() {
     <Portal
       shape="arch"
       phase={0}
-      photo={walletPhoto}
+      photo={WALLET_PHOTO}
       alt="Смартфон с добавленной картой Visa и бесконтактной оплатой"
       label="Wallet"
       glow="radial-gradient(60% 60% at 35% 25%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 70%)"
@@ -105,7 +106,7 @@ export function SceneRoutes() {
     <Portal
       shape="split"
       phase={-4}
-      photo={globePhoto}
+      photo={GLOBE_PHOTO}
       alt="Стеклянный глобус с маршрутом международного перевода"
       label="Routes"
       glow="radial-gradient(60% 60% at 65% 35%, color-mix(in oklab, var(--cyan) 50%, transparent), transparent 70%)"
@@ -118,7 +119,7 @@ export function SceneFormats() {
     <Portal
       shape="stack"
       phase={-8}
-      photo={cardPairPhoto}
+      photo={CARD_PAIR_PHOTO}
       alt="Виртуальная и физическая карты Visa на стеклянном пьедестале"
       label="Virtual / Physical"
       objectPosition="50% 42%"
