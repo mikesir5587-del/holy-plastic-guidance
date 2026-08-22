@@ -686,14 +686,15 @@ function Pricing() {
           <img
             src={CARD_PAIR_PHOTO}
             alt="Виртуальная и физическая карты Visa рядом на пьедестале"
-            width={640}
-            height={640}
+            width={1100}
+            height={1118}
             loading="lazy"
             decoding="async"
-            sizes="(min-width: 640px) 92vw, 92vw"
-            className="art-object art-screen art-float relative block h-[52vw] max-h-[520px] w-full sm:h-[34vw]"
+            sizes="(min-width: 640px) 70vw, 92vw"
+            className="art-cutout cutout-float relative mx-auto block h-auto w-[92%] max-w-[720px] sm:w-[70%]"
             style={{ animationDelay: "-4s" }}
           />
+
         </Reveal>
 
       </div>
