@@ -264,7 +264,16 @@
       animation-play-state: paused;
     }
   }
+  &:focus-within .marquee-track,
+  &:focus-within .marquee-track-rev {
+    animation-play-state: paused;
+  }
+  &[data-paused="true"] .marquee-track,
+  &[data-paused="true"] .marquee-track-rev {
+    animation-play-state: paused;
+  }
 }
+
 
 /* --- card --- */
 @keyframes hp-float {
