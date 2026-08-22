@@ -5,6 +5,9 @@
 
 import type { ReactNode } from "react";
 import { GlassFragment, ScanBeam } from "@/components/site/Decor";
+import walletPhoto from "@/assets/wallet-phone-card.webp.asset.json";
+import globePhoto from "@/assets/glass-globe.webp.asset.json";
+import cryptoPhoto from "@/assets/crypto-flow.webp.asset.json";
 
 const stroke = "currentColor";
 
@@ -16,10 +19,14 @@ function Installation({
   children,
   shape,
   glow,
+  photo,
+  photoClass = "",
 }: {
   children: ReactNode;
   shape: "arch" | "split" | "stack";
   glow: string;
+  photo?: { url: string };
+  photoClass?: string;
 }) {
   const radius =
     shape === "arch"
@@ -27,6 +34,7 @@ function Installation({
       : shape === "split"
         ? "rounded-[1.75rem_5.5rem_1.75rem_5.5rem]"
         : "rounded-[1.75rem]";
+
 
   return (
     <div className={`relative w-full max-w-full ${shape === "stack" ? "pt-6 pl-5" : ""}`}>
