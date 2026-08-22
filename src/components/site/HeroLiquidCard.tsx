@@ -127,7 +127,12 @@ export function HeroLiquidCard({ className = "" }: { className?: string }) {
             className="relative z-10 block w-full select-none"
             style={{
               filter: "drop-shadow(0 60px 80px rgba(0,0,0,0.75))",
+              maskImage:
+                "radial-gradient(76% 78% at 50% 52%, black 52%, rgba(0,0,0,0.72) 74%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(76% 78% at 50% 52%, black 52%, rgba(0,0,0,0.72) 74%, transparent 100%)",
             }}
+
           />
           {/* moving caustic highlight across the chrome shell */}
           {motion ? (
