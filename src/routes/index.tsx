@@ -18,6 +18,14 @@ import { Logo } from "@/components/site/Logo";
 import { Marquee, type MarqueeItem } from "@/components/site/Marquee";
 import { Reveal } from "@/components/site/Reveal";
 import { SceneWallet, SceneRoutes, SceneFormats } from "@/components/site/FeatureScene";
+import {
+  AtmosphericField,
+  GlassFragment,
+  ScanBeam,
+  SectionOrbits,
+  TopoLines,
+} from "@/components/site/Decor";
+
 
 const TELEGRAM = "https://t.me/holy_plastic";
 const EMAIL = "holyplastic@yandex.com";
@@ -355,7 +363,18 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="relative border-y border-white/10 py-14 sm:py-20">
+    <section id="services" className="relative overflow-hidden border-y border-white/10 py-14 sm:py-20">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
+        <div
+          className="absolute inset-x-0 top-1/2 h-[70%] -translate-y-1/2"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent, color-mix(in oklab, white 5%, transparent) 40%, transparent)",
+            backdropFilter: "blur(2px)",
+          }}
+        />
+        <ScanBeam className="inset-y-[30%] opacity-45" />
+      </div>
       <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-8">
         <h2 className="display h-section leading-none">Платите глобально</h2>
       </div>
@@ -363,6 +382,7 @@ function Services() {
     </section>
   );
 }
+
 
 const FEATURES = [
   {
@@ -391,17 +411,11 @@ const FEATURES = [
 function Features() {
   return (
     <section id="features" className="relative overflow-hidden py-24 sm:py-32">
+      <AtmosphericField intensity={0.85} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 text-white">
-        <div className="grid-lines absolute inset-0 opacity-40" />
-        <div
-          className="absolute top-1/3 left-[-15%] h-[60vw] w-[60vw] rounded-full opacity-25 blur-[130px]"
-          style={{
-            background:
-              "radial-gradient(circle, color-mix(in oklab, var(--violet) 60%, transparent), transparent 65%)",
-          }}
-        />
         <div className="chrome-arc absolute top-[10%] right-[-30%] aspect-square w-[80vw] max-w-[900px] opacity-30" />
       </div>
+
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="display h-section leading-none">Возможности</h2>
